@@ -1,637 +1,489 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RG La Casa del Artesano — Catálogo de Muebles a Medida | Jacó, Costa Rica</title>
-<link rel="icon" type="image/png" href="images/logo/rg-monograma.png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
-<style>
-:root{
-  --teal:#2d7a6e; --teal-dark:#1f5650; --teal-darker:#123634; --teal-light:#4a9b91;
-  --gold:#c9a227; --gold-light:#e8c547;
-  --cream:#f7f4ee; --ink:#26302f; --paper:#ffffff;
-  --line:#e4ddcf;
-}
-*{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Cormorant Garamond',serif; background:var(--cream); color:var(--ink); font-size:18px; line-height:1.55;}
-h1,h2,h3,h4{font-family:'Playfair Display',serif;}
-a{color:inherit;}
-img{max-width:100%; display:block;}
-button{font-family:inherit; cursor:pointer;}
-
-/* ===== LOGO (oficial — RG La Casa del Artesano) ===== */
-.logo-img{
-  width:54px; height:54px; border-radius:12px; flex-shrink:0; object-fit:contain;
-  background:#fff; padding:4px; box-shadow:0 2px 10px rgba(31,86,80,.12);
-}
-.brand-name{font-family:'Playfair Display',serif; font-weight:800; font-size:19px; letter-spacing:1px; color:var(--teal-dark); line-height:1.1;}
-.brand-sub{font-size:10px; letter-spacing:2px; color:var(--gold); font-weight:700;}
-
-/* ===== NAVBAR ===== */
-.navbar{
-  position:sticky; top:0; z-index:1000; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line); box-shadow:0 2px 20px rgba(31,86,80,0.06);
-}
-.navbar-inner{max-width:1360px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px;}
-.brand{display:flex; align-items:center; gap:14px; cursor:pointer;}
-.nav-links{display:flex; gap:26px; align-items:center;}
-.nav-links a{font-size:16px; font-weight:600; text-decoration:none; color:var(--teal-dark); letter-spacing:.3px; transition:color .2s;}
-.nav-links a:hover{color:var(--gold);}
-.nav-cta{
-  background:linear-gradient(135deg,var(--teal),var(--teal-dark)); color:#fff; padding:11px 24px; border-radius:8px;
-  text-decoration:none; font-weight:700; font-size:15px; display:inline-flex; align-items:center; gap:8px; border:none;
-  transition:transform .2s, box-shadow .2s;
-}
-.nav-cta:hover{transform:translateY(-2px); box-shadow:0 10px 22px rgba(45,122,110,.3);}
-.nav-toggle{display:none; background:none; border:none; font-size:22px; color:var(--teal-dark); width:44px; height:44px; align-items:center; justify-content:center; flex-shrink:0;}
-
-/* ===== HERO ===== */
-.hero{
-  background:linear-gradient(150deg,var(--teal-darker) 0%, var(--teal-dark) 55%, var(--teal) 100%);
-  color:#fff; padding:90px 28px 70px; position:relative; overflow:hidden;
-}
-.hero::before{
-  content:''; position:absolute; inset:0; opacity:.08;
-  background-image:repeating-linear-gradient(115deg, #fff 0 2px, transparent 2px 40px);
-}
-.hero-inner{max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center; position:relative;}
-.hero-badge{display:inline-block; padding:8px 18px; background:rgba(212,175,55,.18); border:1px solid var(--gold); color:var(--gold-light); border-radius:30px; font-size:13px; letter-spacing:1.5px; font-weight:700; margin-bottom:22px;}
-.hero h1{font-size:clamp(32px,4.4vw,54px); font-weight:800; line-height:1.15; margin-bottom:18px;}
-.hero p.lead{font-size:20px; font-weight:400; opacity:.9; margin-bottom:32px; max-width:520px;}
-.hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
-.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--teal-darker); padding:15px 30px; border-radius:8px; font-weight:800; font-size:16px; text-decoration:none; display:inline-flex; gap:10px; align-items:center; border:none; transition:transform .2s;}
-.btn-gold:hover{transform:translateY(-3px);}
-.btn-outline{border:2px solid rgba(255,255,255,.6); color:#fff; padding:13px 28px; border-radius:8px; font-weight:700; font-size:16px; text-decoration:none; display:inline-flex; gap:10px; align-items:center; transition:all .2s;}
-.btn-outline:hover{background:#fff; color:var(--teal-dark);}
-.hero-visual{border-radius:16px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.35); border:6px solid rgba(255,255,255,.12); aspect-ratio:4/5;}
-.hero-visual img{width:100%; height:100%; object-fit:cover;}
-
-/* ===== SECTION SHELL ===== */
-.section{max-width:1360px; margin:0 auto; padding:90px 28px;}
-.section-head{text-align:center; max-width:680px; margin:0 auto 50px;}
-.eyebrow{color:var(--gold); font-weight:700; font-size:13px; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:10px; display:block;}
-.section-head h2{font-size:clamp(30px,4vw,44px); color:var(--teal-dark); margin-bottom:14px;}
-.section-head p{color:#5c6864; font-size:18px;}
-
-/* ===== CATEGORY GROUPS ===== */
-.group-block{margin-bottom:56px;}
-.group-title{display:flex; align-items:center; gap:14px; margin-bottom:22px;}
-.group-title h3{font-size:24px; color:var(--teal-dark); white-space:nowrap;}
-.group-title .rule{height:1px; background:var(--line); flex:1;}
-.cat-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:22px;}
-
-.cat-card{
-  background:var(--paper); border-radius:14px; overflow:hidden; border:1px solid var(--line);
-  cursor:pointer; transition:transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s, border-color .3s;
-  display:flex; flex-direction:column;
-}
-.cat-card:hover{transform:translateY(-6px); box-shadow:0 18px 34px rgba(31,86,80,.14); border-color:var(--gold);}
-.cat-thumb{width:100%; aspect-ratio:4/3; overflow:hidden; position:relative; background:#eee;}
-.cat-thumb img{width:100%; height:100%; object-fit:cover; transition:transform .5s;}
-.cat-card:hover .cat-thumb img{transform:scale(1.07);}
-.cat-thumb .stock-flag{
-  position:absolute; top:10px; left:10px; background:rgba(31,86,80,.92); color:#fff; font-size:10px; font-weight:700;
-  letter-spacing:1px; padding:5px 10px; border-radius:20px;
-}
-.cat-thumb .pending-flag{
-  position:absolute; top:10px; left:10px; background:rgba(154,166,161,.92); color:#fff; font-size:10px; font-weight:700;
-  letter-spacing:.6px; padding:5px 10px; border-radius:20px;
-}
-.cat-body{padding:16px 18px 20px; display:flex; flex-direction:column; gap:8px; flex:1;}
-.cat-body h4{font-size:19px; color:var(--ink); font-weight:700; line-height:1.25;}
-.cat-count{font-size:13px; color:#7c8884;}
-.cat-link{margin-top:auto; font-size:14px; font-weight:700; color:var(--teal); display:flex; align-items:center; gap:6px;}
-.cat-link i{font-size:12px; transition:transform .2s;}
-.cat-card:hover .cat-link i{transform:translateX(4px);}
-
-/* ===== FEATURED DESIGNS (fotos reales) ===== */
-.feat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:28px;}
-.feat-card{background:#fff; border-radius:16px; overflow:hidden; border:1px solid var(--line); transition:transform .3s, box-shadow .3s;}
-.feat-card:hover{transform:translateY(-8px); box-shadow:0 20px 40px rgba(31,86,80,.15);}
-.feat-thumb{aspect-ratio:1/1; overflow:hidden; background:#f0efe9;}
-.feat-thumb img{width:100%; height:100%; object-fit:cover;}
-.feat-body{padding:22px;}
-.feat-badge{display:inline-block; background:var(--teal); color:#fff; font-size:11px; font-weight:700; letter-spacing:1px; padding:5px 12px; border-radius:20px; margin-bottom:10px;}
-.feat-body h4{font-size:21px; color:var(--teal-dark); margin-bottom:8px;}
-.feat-body p{color:#606c68; font-size:15.5px; margin-bottom:14px;}
-.feat-cta{font-weight:700; color:var(--gold); font-size:14px; display:inline-flex; align-items:center; gap:6px; text-decoration:none;}
-
-/* ===== BREADCRUMB ===== */
-.crumb{max-width:1360px; margin:0 auto; padding:22px 28px 0; font-size:15px; color:#6c7975;}
-.crumb a{color:var(--teal); font-weight:600; text-decoration:none; cursor:pointer;}
-.crumb a:hover{text-decoration:underline;}
-
-/* ===== CATEGORY DETAIL VIEW ===== */
-.cat-hero{max-width:1360px; margin:0 auto; padding:18px 28px 10px;}
-.cat-hero h1{font-size:clamp(28px,4vw,42px); color:var(--teal-dark); margin-bottom:8px;}
-.cat-hero p{color:#606c68; font-size:17px; max-width:700px;}
-.designs-grid{max-width:1360px; margin:0 auto; padding:30px 28px 100px; display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:28px;}
-.design-card{background:#fff; border:1px solid var(--line); border-radius:16px; overflow:hidden; cursor:pointer; transition:transform .3s, box-shadow .3s;}
-.design-card:hover{transform:translateY(-6px); box-shadow:0 18px 36px rgba(31,86,80,.14);}
-.design-thumb{aspect-ratio:5/4; background:#f0efe9; overflow:hidden;}
-.design-thumb img{width:100%; height:100%; object-fit:cover;}
-.design-body{padding:20px;}
-.design-body h4{font-size:20px; color:var(--ink); margin-bottom:6px;}
-.design-body .mat{font-size:14px; color:#7c8884; margin-bottom:12px;}
-.design-btn{font-size:14px; font-weight:700; color:var(--teal); display:inline-flex; align-items:center; gap:6px;}
-
-.empty-state{max-width:640px; margin:20px auto 90px; text-align:center; padding:50px 30px; background:#fff; border:1px dashed #c9c2b0; border-radius:18px;}
-.empty-state img{width:180px; margin:0 auto 20px; border-radius:10px;}
-.empty-state h3{color:var(--teal-dark); font-size:24px; margin-bottom:10px;}
-.empty-state p{color:#606c68; margin-bottom:22px;}
-
-/* ===== DESIGN DETAIL VIEW ===== */
-.design-detail{max-width:1200px; margin:0 auto; padding:20px 28px 100px; display:grid; grid-template-columns:1.1fr .9fr; gap:50px;}
-.dd-gallery img{border-radius:16px; box-shadow:0 20px 45px rgba(31,86,80,.15); width:100%;}
-.dd-info h1{font-size:clamp(26px,3.6vw,38px); color:var(--teal-dark); margin-bottom:14px;}
-.dd-info .mat-line{font-size:16px; color:#6c7975; margin-bottom:22px; display:flex; gap:8px; align-items:center;}
-.dd-info p.desc{font-size:18px; color:#3d4744; margin-bottom:26px;}
-.finish-block{margin-bottom:26px;}
-.finish-block h5{font-size:14px; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal-dark); margin-bottom:12px; font-weight:700;}
-.finish-swatches{display:flex; gap:12px; flex-wrap:wrap;}
-.swatch{width:52px; height:52px; border-radius:10px; border:3px solid var(--gold); position:relative; overflow:hidden; cursor:default;}
-.swatch img{width:100%; height:100%; object-fit:cover;}
-.finish-note{margin-top:14px; padding:14px 16px; background:#f2f0e6; border-left:3px solid var(--gold); border-radius:6px; font-size:15px; color:#5c6864;}
-.dd-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px;}
-
-/* ===== LOCATION ===== */
-.location{background:linear-gradient(135deg,rgba(31,86,80,.92),rgba(18,54,52,.94)); position:relative; overflow:hidden; padding:100px 28px;}
-.location-bg{position:absolute; inset:0; object-fit:cover; width:100%; height:100%; opacity:.28;}
-.location-inner{max-width:1300px; margin:0 auto; position:relative; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;}
-.location-inner h2{color:#fff; font-size:clamp(28px,3.6vw,42px); margin-bottom:26px;}
-.info-item{display:flex; gap:16px; align-items:flex-start; padding:18px; background:rgba(255,255,255,.07); border-left:3px solid var(--gold); border-radius:10px; margin-bottom:16px;}
-.info-item i{width:40px; height:40px; background:var(--gold); color:var(--teal-darker); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0;}
-.info-item h4{color:#fff; font-size:17px; margin-bottom:4px;}
-.info-item p{color:rgba(255,255,255,.85); font-size:15px;}
-.map-frame{border-radius:16px; overflow:hidden; box-shadow:0 25px 50px rgba(0,0,0,.35); height:460px;}
-.map-frame iframe{width:100%; height:100%; border:none;}
-
-/* ===== FOOTER ===== */
-footer{background:var(--teal-darker); color:rgba(255,255,255,.75); padding:70px 28px 26px;}
-.footer-grid{max-width:1300px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:50px; margin-bottom:44px;}
-.footer-brand-row{display:flex; gap:14px; align-items:center; margin-bottom:16px;}
-.footer-title{color:#fff; font-size:16px; font-weight:700; margin-bottom:16px;}
-.footer-link{display:block; color:rgba(255,255,255,.65); text-decoration:none; margin-bottom:10px; font-size:14.5px; transition:color .2s;}
-.footer-link:hover{color:var(--gold-light);}
-.footer-divider{height:1px; background:rgba(255,255,255,.12); max-width:1300px; margin:0 auto;}
-.footer-bottom{max-width:1300px; margin:22px auto 0; text-align:center; font-size:13.5px; color:rgba(255,255,255,.5);}
-
-.wa-float{
-  position:fixed; bottom:26px; right:26px; width:62px; height:62px; border-radius:50%;
-  background:linear-gradient(135deg,#25d366,#1fb955); color:#fff; display:flex; align-items:center; justify-content:center;
-  font-size:28px; box-shadow:0 10px 26px rgba(37,211,102,.4); z-index:999; text-decoration:none; transition:transform .2s;
-}
-.wa-float:hover{transform:scale(1.1);}
-
-.view{display:none;}
-.view.active{display:block;}
-
-@media (max-width:900px){
-  .hero-inner{grid-template-columns:1fr;}
-  .hero-visual{order:-1; aspect-ratio:16/9;}
-  .design-detail{grid-template-columns:1fr;}
-  .location-inner{grid-template-columns:1fr;}
-  .footer-grid{grid-template-columns:1fr; gap:34px;}
-}
-@media (max-width:768px){
-  body{overflow-x:hidden;}
-  .navbar-inner{padding:12px 16px; gap:10px;}
-  .brand-name{font-size:16px;}
-  .brand-sub{font-size:8px; letter-spacing:1px;}
-  .logo-img{width:42px; height:42px;}
-  .nav-cta{display:none;}
-  .nav-links{position:fixed; top:66px; left:0; right:0; background:#fff; flex-direction:column; padding:20px 24px; gap:16px; border-bottom:1px solid var(--line); display:none; z-index:999; box-shadow:0 12px 20px rgba(0,0,0,.08);}
-  .nav-links.open{display:flex;}
-  .nav-links a{font-size:17px;}
-  .nav-wa-mobile{display:flex !important; margin-top:6px; padding:13px; background:linear-gradient(135deg,var(--teal),var(--teal-dark)); color:#fff; text-align:center; border-radius:8px; font-weight:700; justify-content:center; align-items:center; gap:8px; text-decoration:none;}
-  .nav-toggle{display:flex;}
-  .section{padding:60px 20px;}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RG La Casa del Artesano - Ebanistería Fina</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+        }
+        
+        .logo-text {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: #1a1a1a;
+        }
+        
+        .logo-accent { 
+            color: #0d9488; 
+            font-weight: 600;
+        }
+        
+        .logo-gold {
+            color: #c4a747;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 48px;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #fafaf8 100%);
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .hero h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 56px;
+            font-weight: 400;
+            color: #0d9488;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            color: #666;
+            max-width: 520px;
+            margin-bottom: 48px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .scroll-hint {
+            font-size: 11px;
+            color: #999;
+            letter-spacing: 1.2px;
+            animation: bounce 2s infinite;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+        
+        /* Sections */
+        .section {
+            padding: 96px 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 42px;
+            font-weight: 400;
+            color: #0d9488;
+            margin-bottom: 64px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 96px;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            background: #f5f5f5;
+            border-radius: 0;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid #e6e6e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-item:hover {
+            box-shadow: 0 2px 12px rgba(13, 148, 136, 0.08);
+            border-color: #c4a747;
+        }
+        
+        .gallery-item-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e6e6e6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            padding: 24px;
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 96px 48px;
+            background: #fafaf8;
+        }
+        
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+        
+        .map-info h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: #0d9488;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+        
+        .map-info p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        
+        .map-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid #e6e6e6;
+        }
+        
+        .detail-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+        }
+        
+        .detail-label {
+            color: #0d9488;
+            font-weight: 500;
+            min-width: 100px;
+        }
+        
+        .detail-value {
+            color: #555;
+        }
+        
+        #map {
+            width: 100%;
+            height: 400px;
+            border-radius: 0;
+            border: 1px solid #e6e6e6;
+            background: #f0f0f0;
+        }
+        
+        /* Footer */
+        .footer {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(13, 148, 136, 0.15) 0%, 
+                rgba(13, 148, 136, 0.05) 100%), 
+            linear-gradient(135deg, 
+                #0d7f73 0%, 
+                #1db8a5 50%, 
+                #67d4c7 100%);
+            z-index: 0;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 48px;
+        }
+        
+        .footer-logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 48px;
+            font-weight: 400;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.5px;
+        }
+        
+        .footer-tagline {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 0 24px;
+            }
+            
+            .hero h1 { 
+                font-size: 36px; 
+                margin-bottom: 12px;
+            }
+            
+            .hero p {
+                font-size: 15px;
+                max-width: 100%;
+            }
+            
+            .section { 
+                padding: 64px 24px; 
+            }
+            
+            .section-title { 
+                font-size: 32px;
+                margin-bottom: 48px;
+            }
+            
+            .gallery-grid { 
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 16px;
+            }
+            
+            .map-container { 
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            
+            .map-section {
+                padding: 64px 24px;
+            }
+            
+            #map {
+                height: 300px;
+            }
+            
+            .footer-logo {
+                font-size: 36px;
+            }
+            
+            .footer-tagline {
+                font-size: 12px;
+            }
+        }
+        
+        /* Utilities */
+        .text-muted { color: #999; }
+        .mt-2 { margin-top: 16px; }
+        .mt-3 { margin-top: 24px; }
+    </style>
 </head>
 <body>
-
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="navbar-inner">
-    <div class="brand" onclick="Router.home()">
-      <img src="images/logo/rg-monograma.png" alt="RG La Casa del Artesano" class="logo-img">
-      <div>
-        <div class="brand-name">RG</div>
-        <div class="brand-sub">LA CASA DEL ARTESANO</div>
-      </div>
-    </div>
-    <div class="nav-links" id="navLinks">
-      <a onclick="Router.home()">Inicio</a>
-      <a onclick="Router.home();document.getElementById('categorias').scrollIntoView()">Categorías</a>
-      <a onclick="Router.home();document.getElementById('destacados').scrollIntoView()">Destacados</a>
-      <a onclick="Router.home();document.getElementById('ubicacion').scrollIntoView()">Ubicación</a>
-      <a href="https://wa.me/50664458741" class="nav-wa-mobile" style="display:none;"><i class="fa-brands fa-whatsapp"></i> Contactar por WhatsApp</a>
-    </div>
-    <a href="https://wa.me/50664458741" class="nav-cta"><i class="fa-brands fa-whatsapp"></i> Contactar</a>
-    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
-  </div>
-</nav>
-
-<!-- ============ HOME VIEW ============ -->
-<div id="view-home" class="view active">
-
-  <section class="hero">
-    <div class="hero-inner">
-      <div>
-        <span class="hero-badge">EBANISTERÍA A MEDIDA · JACÓ, COSTA RICA</span>
-        <h1>Muebles de madera maciza, hechos a mano para cada espacio</h1>
-        <p class="lead">Diseñamos y fabricamos muebles a medida: dormitorio, comedor, closets, oficina y piezas personalizadas. Explora el catálogo por categoría y consulta el diseño que más te guste.</p>
-        <div class="hero-actions">
-          <a href="#categorias" class="btn-gold" onclick="document.getElementById('categorias').scrollIntoView()"><i class="fa-solid fa-grip"></i> Ver categorías</a>
-          <a href="https://wa.me/50664458741" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Solicitar información</a>
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo-text">
+            <span class="logo-accent">RG</span> 
+            La Casa del 
+            <span class="logo-accent">Artesano</span>
         </div>
-      </div>
-      <div class="hero-visual">
-        <img src="images/dormitorio/cama-madera-cajones-01.jpg" alt="Cama de madera maciza con cajones — fabricación RG La Casa del Artesano">
-      </div>
-    </div>
-  </section>
-
-  <!-- CATEGORÍAS -->
-  <section class="section" id="categorias">
-    <div class="section-head">
-      <span class="eyebrow">Catálogo Completo</span>
-      <h2>Explora por Categoría</h2>
-      <p>Selecciona un tipo de mueble para ver los diseños disponibles y sus acabados.</p>
-    </div>
-    <div id="groupsContainer"></div>
-  </section>
-
-  <!-- DESTACADOS (fotografías reales) -->
-  <section class="section" id="destacados" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-    <div class="section-head">
-      <span class="eyebrow">Trabajos Fotografiados</span>
-      <h2>Diseños Destacados</h2>
-      <p>Piezas de nuestro taller, fotografiadas y listas para consultar.</p>
-    </div>
-    <div class="feat-grid" id="featuredContainer"></div>
-  </section>
-
-  <!-- UBICACIÓN -->
-  <section class="location" id="ubicacion">
-    <img src="images/ubicacion/playa-jaco-01.jpg" alt="Playa de Jacó, Puntarenas" class="location-bg" id="beachBg">
-    <div class="location-inner">
-      <div>
-        <h2>Visítanos en Jacó</h2>
-        <div class="info-item"><i class="fa-solid fa-location-dot"></i><div><h4>Ubicación</h4><p>Calle Principal 123, Jacó, Puntarenas, Costa Rica</p></div></div>
-        <div class="info-item"><i class="fa-solid fa-phone"></i><div><h4>Contacto</h4><p>+506 6445-8741 · WhatsApp +506 8908-6654</p></div></div>
-        <div class="info-item"><i class="fa-solid fa-envelope"></i><div><h4>Email</h4><p>info@rgcasadelartesano.com</p></div></div>
-        <div class="info-item"><i class="fa-solid fa-clock"></i><div><h4>Horario</h4><p>Lun–Vie 8:00am–6:00pm · Sáb 9:00am–3:00pm</p></div></div>
-      </div>
-      <div class="map-frame">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.284!2d-84.7386!3d9.4152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5ede6f6f6f6f6f%3A0x0!2sJac%C3%B3%2C%20Puntarenas%2C%20Costa%20Rica!5e0!3m2!1ses!2scr!4v1694000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<!-- ============ CATEGORY DETAIL VIEW ============ -->
-<div id="view-category" class="view">
-  <div class="crumb"><a onclick="Router.home()">Inicio</a> / <a onclick="Router.home();document.getElementById('categorias').scrollIntoView()">Categorías</a> / <span id="catCrumb"></span></div>
-  <div class="cat-hero">
-    <h1 id="catTitle"></h1>
-    <p id="catDesc"></p>
-  </div>
-  <div id="catBody"></div>
-</div>
-
-<!-- ============ DESIGN DETAIL VIEW ============ -->
-<div id="view-design" class="view">
-  <div class="crumb">
-    <a onclick="Router.home()">Inicio</a> / <a onclick="Router.home();document.getElementById('categorias').scrollIntoView()">Categorías</a> / <span id="designCrumbCat"></span> / <span id="designCrumbName"></span>
-  </div>
-  <div class="design-detail" id="designDetailBody"></div>
-</div>
-
-<!-- FOOTER (shared) -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand-row">
-        <img src="images/logo/rg-monograma.png" alt="RG La Casa del Artesano" class="logo-img" style="width:44px;height:44px;">
-        <div>
-          <div style="color:#fff; font-weight:800; font-size:15px;">RG</div>
-          <div style="font-size:9px; color:var(--gold-light); letter-spacing:1.5px; font-weight:700;">LA CASA DEL ARTESANO</div>
-        </div>
-      </div>
-      <p style="font-size:14.5px; line-height:1.7;">Ebanistería a medida en Jacó, Puntarenas. Muebles de madera maciza fabricados a mano, diseñados para cada espacio del hogar y la oficina.</p>
-    </div>
-    <div>
-      <div class="footer-title">Catálogo</div>
-      <a class="footer-link" onclick="Router.home();document.getElementById('categorias').scrollIntoView()">Todas las categorías</a>
-      <a class="footer-link" onclick="Router.home();document.getElementById('destacados').scrollIntoView()">Diseños destacados</a>
-      <a class="footer-link" onclick="Router.home();document.getElementById('ubicacion').scrollIntoView()">Ubicación</a>
-    </div>
-    <div>
-      <div class="footer-title">Contacto</div>
-      <a class="footer-link" href="https://wa.me/50664458741">WhatsApp: +506 8908-6654</a>
-      <a class="footer-link" href="tel:+50664458741">Tel: +506 6445-8741</a>
-      <a class="footer-link" href="mailto:info@rgcasadelartesano.com">info@rgcasadelartesano.com</a>
-    </div>
-  </div>
-  <div class="footer-divider"></div>
-  <div class="footer-bottom">&copy; 2026 RG La Casa del Artesano — Jacó, Puntarenas, Costa Rica. Todos los derechos reservados.</div>
-</footer>
-
-<a href="https://wa.me/50664458741" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
-
-<script>
-/* ============================================================
-   CATÁLOGO — estructura de datos única y reutilizable.
-   Para agregar una categoría nueva: añade un objeto al arreglo.
-   Para agregar un diseño con foto real: añade un objeto a "designs"
-   con su imagen real. Mientras "designs" esté vacío, la categoría
-   se muestra automáticamente como "catálogo en preparación".
-   ============================================================ */
-const PLACEHOLDER = "images/placeholder/imagen-pendiente.jpg";
-
-const CATALOG = [
-  { group: "Cocina", items: [
-    { id:"muebles-cocina", name:"Muebles de Cocina", icon:"fa-kitchen-set",
-      desc:"Módulos y componentes individuales para cocina: alacenas, gabinetes bajos, islas y más.",
-      designs: [] },
-    { id:"cocinas-completas", name:"Cocinas Completas", icon:"fa-fire-burner",
-      desc:"Sistemas integrales de cocina, diseñados a la medida del espacio.",
-      designs: [] },
-  ]},
-  { group: "Comedor", items: [
-    { id:"mesas", name:"Mesas", icon:"fa-table",
-      desc:"Mesas de comedor, centro y auxiliares en madera maciza.",
-      designs: [] },
-    { id:"sillas", name:"Sillas", icon:"fa-chair",
-      desc:"Sillas artesanales individuales y en conjunto.",
-      designs: [] },
-    { id:"comedores", name:"Comedores", icon:"fa-utensils",
-      desc:"Conjuntos de comedor completos, incluyendo mesas altas tipo barra.",
-      designs: [
-        { name:"Barra Alta para Comedor con Mosaico", image:"images/comedores/barra-comedor-mosaico-01.jpg",
-          material:"Madera maciza con incrustaciones de mosaico cerámico pintado a mano",
-          desc:"Barra alta tipo desayunador con cuatro banquitos a juego. Superficie superior decorada con mosaico cerámico artesanal; laterales con paneles tipo persiana. Ideal para espacios de comedor informal o cocinas abiertas.",
-          finishes:[{name:"Madera natural con mosaico", image:"images/comedores/barra-comedor-mosaico-01.jpg"}] }
-      ] },
-    { id:"juegos-comedor", name:"Juegos de Comedor", icon:"fa-bowl-food",
-      desc:"Conjuntos de mesa y sillas a juego, diseñados como set completo.",
-      designs: [] },
-  ]},
-  { group: "Puertas", items: [
-    { id:"puertas", name:"Puertas", icon:"fa-door-closed",
-      desc:"Puertas interiores y exteriores en madera maciza, lisas o talladas.",
-      designs: [] },
-  ]},
-  { group: "Baño", items: [
-    { id:"muebles-bano", name:"Muebles de Baño", icon:"fa-bath",
-      desc:"Muebles bajo lavamanos, gabinetes y accesorios para baño.",
-      designs: [] },
-    { id:"banos", name:"Baños", icon:"fa-shower",
-      desc:"Proyectos integrales de mobiliario para baño.",
-      designs: [] },
-  ]},
-  { group: "Closets y Vestidores", items: [
-    { id:"closets", name:"Closets", icon:"fa-door-open",
-      desc:"Closets empotrados y modulares a la medida del espacio.",
-      designs: [] },
-    { id:"vestidores", name:"Vestidores", icon:"fa-shirt",
-      desc:"Muebles vestidor con espejo y cajonera integrada.",
-      designs: [
-        { name:"Vestidor con Espejo y Cajonera", image:"images/closets/ropero-vestidor-espejo-01.jpg",
-          material:"Madera maciza, puertas tipo persiana",
-          desc:"Mueble vestidor de dos cuerpos con puertas de persiana a los costados, espejo central biselado y cajonera de tres gavetas con tiradores metálicos.",
-          finishes:[{name:"Barniz miel", image:"images/closets/ropero-vestidor-espejo-01.jpg"}] }
-      ] },
-    { id:"roperos", name:"Roperos", icon:"fa-archive",
-      desc:"Roperos de una o varias puertas para almacenaje de ropa.",
-      designs: [] },
-    { id:"gaveteros", name:"Gaveteros", icon:"fa-box-archive",
-      desc:"Muebles de gavetas para dormitorio o closet.",
-      designs: [] },
-  ]},
-  { group: "Oficina", items: [
-    { id:"escritorios", name:"Escritorios", icon:"fa-laptop",
-      desc:"Escritorios ejecutivos y de trabajo en madera maciza.",
-      designs: [] },
-    { id:"muebles-oficina", name:"Muebles para Oficina", icon:"fa-briefcase",
-      desc:"Libreros, archiveros y mobiliario complementario de oficina.",
-      designs: [] },
-  ]},
-  { group: "Sala", items: [
-    { id:"centros-entretenimiento", name:"Centros de Entretenimiento", icon:"fa-tv",
-      desc:"Muebles para televisión y equipo de sonido.",
-      designs: [] },
-    { id:"muebles-sala", name:"Muebles para Sala", icon:"fa-couch",
-      desc:"Sofás con estructura de madera, mesas de centro y auxiliares.",
-      designs: [] },
-  ]},
-  { group: "Dormitorio", items: [
-    { id:"muebles-dormitorio", name:"Muebles para Dormitorio", icon:"fa-bed",
-      desc:"Mobiliario complementario para habitación.",
-      designs: [] },
-    { id:"camas", name:"Camas", icon:"fa-bed",
-      desc:"Camas en madera maciza, con o sin almacenaje integrado.",
-      designs: [
-        { name:"Cama con Cajones de Almacenaje", image:"images/dormitorio/cama-madera-cajones-01.jpg",
-          material:"Madera maciza, tono miel",
-          desc:"Cama tamaño king con cabecera de paneles y sistema de cajones de almacenaje integrados en la base: dos gavetas laterales por lado con guías metálicas.",
-          finishes:[{name:"Barniz natural tono miel", image:"images/dormitorio/cama-madera-cajones-01.jpg"}] }
-      ] },
-    { id:"mesas-noche", name:"Mesas de Noche", icon:"fa-lightbulb",
-      desc:"Mesas de noche a juego con el resto del dormitorio.",
-      designs: [] },
-  ]},
-  { group: "Estanterías", items: [
-    { id:"libreros", name:"Libreros", icon:"fa-book",
-      desc:"Libreros y estantes verticales para sala u oficina.",
-      designs: [] },
-    { id:"estanterias", name:"Estanterías", icon:"fa-layer-group",
-      desc:"Estanterías modulares para exhibición y almacenaje.",
-      designs: [
-        { name:"Estantería / Vinera Modular en Teca", image:"images/estanterias/estanteria-vinera-teca-01.jpg",
-          material:"Teca maciza",
-          desc:"Estantería modular con divisiones tipo panal para exhibición y almacenaje de botellas o piezas decorativas. Estructura reforzada con patas de apoyo en ángulo.",
-          finishes:[{name:"Teca natural", image:"images/estanterias/estanteria-vinera-teca-01.jpg"}] }
-      ] },
-  ]},
-  { group: "Gabinetes", items: [
-    { id:"gabinetes", name:"Gabinetes", icon:"fa-box",
-      desc:"Gabinetes decorativos y de almacenaje con talla artesanal.",
-      designs: [
-        { name:"Gabinete Tallado Estilo Clásico", image:"images/gabinetes/gabinete-tallado-clasico-01.jpg",
-          material:"Madera maciza, tono oscuro",
-          desc:"Gabinete de dos puertas con talla artesanal en relieve (medallones tipo roseta), remate superior curvo y patas talladas de estilo clásico.",
-          finishes:[{name:"Tono oscuro / nogal", image:"images/gabinetes/gabinete-tallado-clasico-01.jpg"}] }
-      ] },
-  ]},
-  { group: "Otros", items: [
-    { id:"personalizados", name:"Muebles Personalizados", icon:"fa-pen-ruler",
-      desc:"Proyectos a medida según diseño y especificaciones del cliente.",
-      designs: [] },
-    { id:"otros-muebles", name:"Otros Muebles", icon:"fa-ellipsis",
-      desc:"Otras piezas de fabricación artesanal.",
-      designs: [] },
-  ]},
-];
-
-/* Utilidades */
-function findCategory(id){
-  for(const g of CATALOG){ const it = g.items.find(i=>i.id===id); if(it) return {cat:it, group:g.group}; }
-  return null;
-}
-function allCategoriesFlat(){
-  return CATALOG.flatMap(g=>g.items.map(i=>({...i, group:g.group})));
-}
-
-/* ============ RENDER: Home groups ============ */
-function renderGroups(){
-  const el = document.getElementById('groupsContainer');
-  el.innerHTML = CATALOG.map(g => `
-    <div class="group-block">
-      <div class="group-title"><h3>${g.group}</h3><div class="rule"></div></div>
-      <div class="cat-grid">
-        ${g.items.map(cat => {
-          const hasPhoto = cat.designs.length > 0;
-          const img = hasPhoto ? cat.designs[0].image : PLACEHOLDER;
-          const flag = hasPhoto ? `<span class="stock-flag"><i class="fa-solid fa-camera"></i> Foto real</span>` : `<span class="pending-flag">Foto pendiente</span>`;
-          const count = hasPhoto ? `${cat.designs.length} diseño${cat.designs.length>1?'s':''} disponible${cat.designs.length>1?'s':''}` : `Catálogo en preparación`;
-          return `
-          <div class="cat-card" onclick="Router.category('${cat.id}')">
-            <div class="cat-thumb">${flag}<img src="${img}" alt="${cat.name}"></div>
-            <div class="cat-body">
-              <h4><i class="fa-solid ${cat.icon}" style="color:var(--gold); margin-right:6px; font-size:15px;"></i>${cat.name}</h4>
-              <div class="cat-count">${count}</div>
-              <div class="cat-link">Ver catálogo <i class="fa-solid fa-arrow-right"></i></div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Ebanistería de Precisión</h1>
+        <p>Cada pieza es una conversación entre la madera, la luz y la intención. Muebles que perduran en el tiempo.</p>
+        <div class="scroll-hint">↓ Explorar Trabajos</div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section class="section">
+        <h2 class="section-title">Galería de Trabajos</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-item-placeholder">Armario Tallado<br><span class="text-muted" style="font-size: 11px; margin-top: 8px; display: block;">Ebanistería Clásica</span></div>
             </div>
-          </div>`;
-        }).join('')}
-      </div>
-    </div>
-  `).join('');
-}
-
-/* ============ RENDER: Featured (only categories with real photos) ============ */
-function renderFeatured(){
-  const el = document.getElementById('featuredContainer');
-  const featured = [];
-  allCategoriesFlat().forEach(cat=>{
-    cat.designs.forEach((d,idx)=> featured.push({cat, design:d, idx}));
-  });
-  el.innerHTML = featured.map(f => `
-    <div class="feat-card" onclick="Router.design('${f.cat.id}', ${f.idx})">
-      <div class="feat-thumb"><img src="${f.design.image}" alt="${f.design.name}"></div>
-      <div class="feat-body">
-        <span class="feat-badge">${f.cat.name.toUpperCase()}</span>
-        <h4>${f.design.name}</h4>
-        <p>${f.design.material}</p>
-        <span class="feat-cta">Ver diseño <i class="fa-solid fa-arrow-right"></i></span>
-      </div>
-    </div>
-  `).join('');
-}
-
-/* ============ RENDER: Category detail ============ */
-function renderCategory(id){
-  const found = findCategory(id);
-  if(!found) return Router.home();
-  const {cat, group} = found;
-  document.getElementById('catCrumb').textContent = cat.name;
-  document.getElementById('catTitle').textContent = cat.name;
-  document.getElementById('catDesc').textContent = cat.desc;
-
-  const body = document.getElementById('catBody');
-  if(cat.designs.length === 0){
-    body.innerHTML = `
-      <div class="empty-state">
-        <img src="${PLACEHOLDER}" alt="Catálogo en preparación">
-        <h3>Catálogo en preparación</h3>
-        <p>Todavía no tenemos fotografías reales de <strong>${cat.name.toLowerCase()}</strong> cargadas en el sitio. Podemos fabricar este tipo de mueble — escríbenos para ver opciones y fotos por WhatsApp.</p>
-        <a href="https://wa.me/50664458741?text=${encodeURIComponent('Hola, quisiera información sobre '+cat.name)}" class="btn-gold"><i class="fa-brands fa-whatsapp"></i> Consultar ${cat.name}</a>
-      </div>`;
-  } else {
-    body.innerHTML = `<div class="designs-grid">
-      ${cat.designs.map((d,idx)=>`
-        <div class="design-card" onclick="Router.design('${cat.id}', ${idx})">
-          <div class="design-thumb"><img src="${d.image}" alt="${d.name}"></div>
-          <div class="design-body">
-            <h4>${d.name}</h4>
-            <div class="mat">${d.material}</div>
-            <span class="design-btn">Ver diseño y acabados <i class="fa-solid fa-arrow-right"></i></span>
-          </div>
+            <div class="gallery-item">
+                <div class="gallery-item-placeholder">Mesa Río Epoxi<br><span class="text-muted" style="font-size: 11px; margin-top: 8px; display: block;">Diseño Contemporáneo</span></div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-placeholder">Repisas Flotantes<br><span class="text-muted" style="font-size: 11px; margin-top: 8px; display: block;">Madera Natural</span></div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-placeholder">Mueble Modular<br><span class="text-muted" style="font-size: 11px; margin-top: 8px; display: block;">Funcionalidad Fina</span></div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-placeholder">Detalles de Taller<br><span class="text-muted" style="font-size: 11px; margin-top: 8px; display: block;">Artesanía</span></div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-placeholder">Acabados Especiales<br><span class="text-muted" style="font-size: 11px; margin-top: 8px; display: block;">Técnicas Mixtas</span></div>
+            </div>
         </div>
-      `).join('')}
-    </div>`;
-  }
-}
-
-/* ============ RENDER: Design detail ============ */
-function renderDesign(catId, idx){
-  const found = findCategory(catId);
-  if(!found) return Router.home();
-  const {cat} = found;
-  const d = cat.designs[idx];
-  if(!d) return Router.category(catId);
-
-  document.getElementById('designCrumbCat').innerHTML = `<a onclick="Router.category('${catId}')">${cat.name}</a>`;
-  document.getElementById('designCrumbName').textContent = d.name;
-
-  const swatches = d.finishes.map(f=>`<div class="swatch" title="${f.name}"><img src="${f.image}" alt="${f.name}"></div>`).join('');
-  const finishNames = d.finishes.map(f=>f.name).join(', ');
-
-  document.getElementById('designDetailBody').innerHTML = `
-    <div class="dd-gallery"><img src="${d.image}" alt="${d.name}"></div>
-    <div class="dd-info">
-      <h1>${d.name}</h1>
-      <div class="mat-line"><i class="fa-solid fa-swatchbook" style="color:var(--gold);"></i> ${d.material}</div>
-      <p class="desc">${d.desc}</p>
-      <div class="finish-block">
-        <h5>Acabado fotografiado</h5>
-        <div class="finish-swatches">${swatches}</div>
-        <div class="finish-note"><i class="fa-solid fa-circle-info" style="color:var(--gold); margin-right:6px;"></i>Este diseño se fabrica actualmente en: <strong>${finishNames}</strong>. Otros tonos y acabados de madera están disponibles bajo pedido — consulta con nuestro equipo para ver opciones adicionales.</div>
-      </div>
-      <div class="dd-actions">
-        <a href="https://wa.me/50664458741?text=${encodeURIComponent('Hola, me interesa el diseño: '+d.name)}" class="btn-gold"><i class="fa-brands fa-whatsapp"></i> Consultar este diseño</a>
-        <a onclick="Router.category('${catId}')" class="btn-outline" style="border-color:var(--teal); color:var(--teal-dark);"><i class="fa-solid fa-arrow-left"></i> Volver al catálogo</a>
-      </div>
-    </div>
-  `;
-}
-
-/* ============ ROUTER ============ */
-const Router = {
-  home(){
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    document.getElementById('view-home').classList.add('active');
-    window.scrollTo({top:0, behavior:'instant'});
-  },
-  category(id){
-    renderCategory(id);
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    document.getElementById('view-category').classList.add('active');
-    window.scrollTo({top:0, behavior:'instant'});
-  },
-  design(catId, idx){
-    renderDesign(catId, idx);
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    document.getElementById('view-design').classList.add('active');
-    window.scrollTo({top:0, behavior:'instant'});
-  }
-};
-
-/* Init */
-renderGroups();
-renderFeatured();
-
-/* Fallback: si la imagen de playa local no existe, usar la subida por el cliente como referencia local (ruta relativa al proyecto) */
-document.getElementById('beachBg').addEventListener('error', function(){
-  this.style.display = 'none';
-});
-</script>
+    </section>
+    
+    <!-- Map & Location Section -->
+    <section class="map-section">
+        <h2 class="section-title">Ubicación</h2>
+        <div class="map-container">
+            <div class="map-info">
+                <h3>La Casa del Artesano</h3>
+                <p>Ubicada en el corazón de Jacó, Puntarenas, nuestra ebanistería es un espacio donde la tradición artesanal y la innovación conviven en cada proyecto que realizamos.</p>
+                <p>Visitanos para explorar nuestras piezas, discutir ideas personalizadas, o encargar tu proyecto exclusivo.</p>
+                <div class="map-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Ubicación</span>
+                        <span class="detail-value">Jacó, Puntarenas, Costa Rica</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Horario</span>
+                        <span class="detail-value">Lunes a Viernes, 8:00 - 18:00</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Especialidad</span>
+                        <span class="detail-value">Diseño personalizado, restauración y muebles finos</span>
+                    </div>
+                </div>
+            </div>
+            <div id="map"></div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <section class="footer">
+        <div class="footer-bg"></div>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-gold">RG</span> Casa del <span style="color: #ffffff;">Artesano</span>
+            </div>
+            <div class="footer-tagline">Donde la madera se convierte en arte</div>
+        </div>
+    </section>
+    
+    <!-- Leaflet Map Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Leaflet Map
+            const map = L.map('map', {
+                center: [9.6304, -84.7347],
+                zoom: 13,
+                scrollWheelZoom: false,
+                zoomControl: true
+            });
+            
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19,
+                minZoom: 10
+            }).addTo(map);
+            
+            // Add custom marker for La Casa del Artesano
+            L.circleMarker([9.6304, -84.7347], {
+                radius: 10,
+                fillColor: '#0d9488',
+                color: '#c4a747',
+                weight: 3,
+                opacity: 1,
+                fillOpacity: 0.85
+            })
+            .bindPopup(
+                '<div style="text-align: center; font-size: 13px; font-family: Crimson Text, serif;">' +
+                '<strong style="font-size: 14px;">La Casa del Artesano</strong><br>' +
+                'Jacó, Puntarenas, Costa Rica' +
+                '</div>',
+                { className: 'custom-popup' }
+            )
+            .addTo(map);
+            
+            // Enable/disable scroll wheel zoom on map focus
+            map.on('focus', () => { if (map.scrollWheelZoom) map.scrollWheelZoom.enable(); });
+            map.on('blur', () => { if (map.scrollWheelZoom) map.scrollWheelZoom.disable(); });
+        });
+        
+        // Smooth scroll on navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
