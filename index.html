@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RG La Casa del Artesano - Ebanistería Premium en Jacó</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --teal-primary: #2d7a6e;
+            --teal-dark: #1f5650;
+            --teal-light: #4a9b91;
+            --gold: #d4af37;
+            --gold-light: #e8c547;
+            --white: #ffffff;
+            --dark: #0f3535;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(to bottom, #f8f9fa, #e6f2f0);
+            color: #333;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* NAVBAR */
+        .navbar-premium {
+            background: linear-gradient(to right, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(45, 122, 110, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #5a8a6f 0%, #d4a85f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(45, 122, 110, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-circle::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(45, 122, 110, 0.95) 0%, rgba(212, 175, 55, 0.95) 100%);
+        }
+
+        .logo-circle i {
+            color: white;
+            font-size: 28px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .logo-text-sub {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .nav-link {
+            color: var(--teal-dark);
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal-primary), var(--gold));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--teal-primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, var(--teal-primary) 0%, var(--teal-dark) 100%);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: 2px solid var(--teal-primary);
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(45, 122, 110, 0.3);
+            border-color: var(--gold);
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(45, 122, 110, 0.9) 0%, rgba(31, 86, 80, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&h=800&fit=crop') center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--teal-dark);
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(42px, 8vw, 72px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 20px 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2.5vw, 24px);
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            letter-spacing: 1px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--teal-dark);
+            padding: 16px 40px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            border: 2px solid white;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--teal-primary);
+            transform: translateY(-4px);
+        }
+
+        /* SCROLL INDICATOR */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* SECCIONES */
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--teal-dark) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--teal-primary), var(--gold));
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* GALERÍA DE MUEBLES */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .gallery-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(45, 122, 110, 0.2);
+            border-color: var(--gold);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #999;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            object-fit: cover;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-card:hover .gallery-image img {
+            transform: scale(1.05);
+        }
+
+        .gallery-content {
+            padding: 30px 25px;
+        }
+
+        .gallery-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            color: white;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .gallery-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--teal-dark);
+            margin-bottom: 12px;
+        }
+
+        .gallery-desc {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        /* SECCIÓN UBICACIÓN CON MAR */
+        .location-section {
+            background: linear-gradient(135deg, rgba(45, 122, 110, 0.85) 0%, rgba(31, 86, 80, 0.85) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 40px;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+        }
+
+        .location-beach {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .location-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            z-index: 10;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .location-info {
+            color: white;
+        }
+
+        .location-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .info-item {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateX(10px);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal-dark);
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .info-text h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-text p {
+            font-size: 15px;
+            opacity: 0.95;
+        }
+
+        .location-map {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            height: 500px;
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* FOOTER */
+        .footer-premium {
+            background: linear-gradient(135deg, var(--teal-dark) 0%, var(--dark) 100%);
+            color: rgba(255,255,255,0.8);
+            padding: 80px 40px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            display: block;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .footer-link:hover {
+            color: var(--gold);
+            transform: translateX(8px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            background: var(--gold);
+            color: var(--teal-dark);
+            transform: scale(1.1);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0), var(--gold), rgba(255,255,255,0));
+            margin: 40px 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* WHATSAPP BUTTON */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #25d366 0%, #20ba58 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .section-container {
+                padding: 60px 20px;
+            }
+
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-items {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+        }
+
+        /* ANIMACIONES SCROLL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar-premium">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="logo-brand">
+                <div class="logo-circle">
+                    <i class="fas fa-hammer"></i>
+                </div>
+                <div>
+                    <div class="logo-text">RG</div>
+                    <div class="logo-text-sub">LA CASA DEL ARTESANO</div>
+                </div>
+            </div>
+
+            <div class="nav-items hidden lg:flex gap-8">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#galeria" class="nav-link">Galería</a>
+                <a href="#ubicacion" class="nav-link">Ubicación</a>
+            </div>
+
+            <a href="https://wa.me/50664458741" class="btn-cta">
+                <i class="fab fa-whatsapp"></i> Contactar
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-badge">✨ Artesanía Premium Desde 1995</div>
+            <h1 class="hero-title">Diseño y Creación de Muebles a Medida</h1>
+            <p class="hero-subtitle">Ebanistería de Lujo | Craftsmanship Excepcional | Diseño Personalizado</p>
+            
+            <div class="hero-buttons">
+                <a href="https://wa.me/50664458741" class="btn-primary">
+                    <i class="fab fa-whatsapp"></i> Cotizar Ahora
+                </a>
+                <a href="#galeria" class="btn-secondary">
+                    <i class="fas fa-images"></i> Ver Trabajos
+                </a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator text-white">
+            <i class="fas fa-chevron-down text-3xl"></i>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="section-container">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <p class="section-subtitle">Soluciones personalizadas de ebanistería fina para cada espacio de tu hogar</p>
+
+        <div class="gallery-grid">
+            <!-- Servicio 1 -->
+            <div class="gallery-card reveal">
+                <div class="gallery-image">
+                    <div>
+                        <div style="font-size: 60px; color: var(--teal-light); margin-bottom: 10px;"><i class="fas fa-bed"></i></div>
+                        <div>Muebles a Medida</div>
+                    </div>
+                </div>
+                <div class="gallery-content">
+                    <span class="gallery-badge">MUEBLES</span>
+                    <h3 class="gallery-title">Muebles Personalizados</h3>
+                    <p class="gallery-desc">Creamos muebles personalizados en maderas premium diseñados exactamente como los imaginas.</p>
+                </div>
+            </div>
+
+            <!-- Servicio 2 -->
+            <div class="gallery-card reveal">
+                <div class="gallery-image">
+                    <div>
+                        <div style="font-size: 60px; color: var(--teal-light); margin-bottom: 10px;"><i class="fas fa-door-open"></i></div>
+                        <div>Puertas Personalizadas</div>
+                    </div>
+                </div>
+                <div class="gallery-content">
+                    <span class="gallery-badge">PUERTAS</span>
+                    <h3 class="gallery-title">Puertas Premium</h3>
+                    <p class="gallery-desc">Puertas de diseño exclusivo en diversos estilos y acabados con finuras artesanales.</p>
+                </div>
+            </div>
+
+            <!-- Servicio 3 -->
+            <div class="gallery-card reveal">
+                <div class="gallery-image">
+                    <div>
+                        <div style="font-size: 60px; color: var(--teal-light); margin-bottom: 10px;"><i class="fas fa-utensils"></i></div>
+                        <div>Cocinas Integrales</div>
+                    </div>
+                </div>
+                <div class="gallery-content">
+                    <span class="gallery-badge">COCINAS</span>
+                    <h3 class="gallery-title">Cocinas Integrales</h3>
+                    <p class="gallery-desc">Diseños funcionales y elegantes que transforman tu cocina en un espacio premium.</p>
+                </div>
+            </div>
+
+            <!-- Servicio 4 -->
+            <div class="gallery-card reveal">
+                <div class="gallery-image">
+                    <div>
+                        <div style="font-size: 60px; color: var(--teal-light); margin-bottom: 10px;"><i class="fas fa-palette"></i></div>
+                        <div>Diseño Artesanal</div>
+                    </div>
+                </div>
+                <div class="gallery-content">
+                    <span class="gallery-badge">DISEÑO</span>
+                    <h3 class="gallery-title">Proyectos Especiales</h3>
+                    <p class="gallery-desc">Proyectos especiales con técnicas tradicionales y detalles únicos de artesanía fina.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA PRODUCTOS -->
+    <section id="galeria" class="section-container" style="background: white; margin: 0; padding-left: 0; padding-right: 0;">
+        <div class="px-10 pt-20 pb-20">
+            <h2 class="section-title">Galería de Trabajos</h2>
+            <p class="section-subtitle">Showcase de nuestros proyectos más destacados en ebanistería fina</p>
+
+            <div class="gallery-grid">
+                <!-- Imagen 1: Cama -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1540932239986-310128078ceb?w=500&h=400&fit=crop" alt="Cama Personalizada" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">CAMA</span>
+                        <h3 class="gallery-title">Cama de Nogal Premium</h3>
+                        <p class="gallery-desc">Cama king con cabecera tallada artísticamente. Nogal oscuro con detalles en oro y teál.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 2: Puerta -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&h=400&fit=crop" alt="Puerta Moderna" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">PUERTA</span>
+                        <h3 class="gallery-title">Puerta Roble Moderno</h3>
+                        <p class="gallery-desc">Puerta interior con líneas horizontales. Roble claro con herrajes dorados.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 3: Cocina -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=400&fit=crop" alt="Cocina Integral" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">COCINA</span>
+                        <h3 class="gallery-title">Cocina Premium Nogal</h3>
+                        <p class="gallery-desc">Sistema completo en nogal con electrodomésticos integrados y LED bajo gabinetes.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 4: Estantería -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1594028763650-88e080f4e17d?w=500&h=400&fit=crop" alt="Estantería" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">ESTANTERÍA</span>
+                        <h3 class="gallery-title">Estantería Flotante Teca</h3>
+                        <p class="gallery-desc">Tres niveles de estantes flotantes con madera teál. Diseño minimalista moderno.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 5: Sillas -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&h=400&fit=crop" alt="Sillas Artesanales" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">SILLAS</span>
+                        <h3 class="gallery-title">Conjunto 4 Sillas Roble</h3>
+                        <p class="gallery-desc">Set de sillas en roble con respaldos tallados. Tapicería lino con ribete teál.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 6: Mesa Resina -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&h=400&fit=crop" alt="Mesa Resina Teál" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">MESA</span>
+                        <h3 class="gallery-title">Mesa Madera + Resina</h3>
+                        <p class="gallery-desc">Mesa comedor con veta de río en resina teál brillante. Base escultórica premium.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 7: Closet -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1578926314433-8e62cabb2df0?w=500&h=400&fit=crop" alt="Closet" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">CLOSET</span>
+                        <h3 class="gallery-title">Closet Personalizado</h3>
+                        <p class="gallery-desc">Walk-in closet floor-to-ceiling en cerezo. Iluminación LED integrada.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 8: Puerta Tallada -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&h=400&fit=crop" alt="Puerta Tallada" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">PUERTA TALLADA</span>
+                        <h3 class="gallery-title">Puerta Nogal Artística</h3>
+                        <p class="gallery-desc">Puerta en nogal con tallado en relieve geométrico. Acentos en hoja dorada.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 9: Escritorio -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1593642632513-8f3a08da8df1?w=500&h=400&fit=crop" alt="Escritorio" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">ESCRITORIO</span>
+                        <h3 class="gallery-title">Escritorio Caoba Ejecutivo</h3>
+                        <p class="gallery-desc">Escritorio en caoba con patas esculturales. Herrajes dorados premium.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 10: Cabecera -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1565636192335-14fdd2b6d4cb?w=500&h=400&fit=crop" alt="Cabecera Tallada" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">CABECERA</span>
+                        <h3 class="gallery-title">Cabecera Relieve 3D</h3>
+                        <p class="gallery-desc">Cabecera en nogal con tallado en relieve profundo. Patrón naturaleza.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 11: Marco -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&h=400&fit=crop" alt="Marco y Moldura" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">MARCO</span>
+                        <h3 class="gallery-title">Sistema Marco Roble</h3>
+                        <p class="gallery-desc">Sistema personalizado de marco y moldura. Roble premium con herrajes dorados.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 12: Divisor -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=500&h=400&fit=crop" alt="Panel Divisor" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">DIVISOR</span>
+                        <h3 class="gallery-title">Panel Divisor Teca</h3>
+                        <p class="gallery-desc">Panel divisor en teca con patrón geométrico láser-cortado. Moderno y artístico.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 13: Vitrina -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1585399523548-f9e6b30c9c3a?w=500&h=400&fit=crop" alt="Vitrina" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">VITRINA</span>
+                        <h3 class="gallery-title">Vitrina Nogal Showcase</h3>
+                        <p class="gallery-desc">Mueble vitrina con puertas vidrio. Iluminación LED interior premium.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen 14: Sofá -->
+                <div class="gallery-card reveal">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=400&fit=crop" alt="Sofá" loading="lazy">
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-badge">SOFÁ</span>
+                        <h3 class="gallery-title">Sofá Marco Esculórico</h3>
+                        <p class="gallery-desc">Marco de sofá en madera oscura con patas escultóricas. Tapicería lino teál.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="https://wa.me/50664458741" class="btn-primary">
+                    <i class="fas fa-image"></i> Ver Más Proyectos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- UBICACIÓN CON IMAGEN DEL MAR -->
+    <section id="ubicacion" class="location-section">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=800&fit=crop" alt="Playa" class="location-beach">
+        
+        <div class="location-content">
+            <div class="location-info">
+                <h2 class="location-title">Visítanos en Jacó</h2>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Ubicación</h3>
+                        <p>Calle Principal 123, Centro Comercial<br>Jacó, Puntarenas, Costa Rica</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Contacto</h3>
+                        <p><strong style="color: var(--gold);">+506 6445-8741</strong><br>WhatsApp: +506 8908-6654</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Email</h3>
+                        <p>info@rgcasadelartesano.com</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Horario</h3>
+                        <p>Lunes - Viernes: 8:00 AM - 6:00 PM<br>Sábado: 9:00 AM - 3:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.284!2d-84.7386!3d9.4152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5ede6f6f6f6f6f%3A0x0!2sJac%C3%B3%2C%20Puntarenas%2C%20Costa%20Rica!5e0!3m2!1ses!2scr!4v1694000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-premium">
+        <div class="footer-grid">
+            <div>
+                <div class="logo-brand" style="margin-bottom: 20px;">
+                    <div class="logo-circle" style="width: 45px; height: 45px;">
+                        <i class="fas fa-hammer" style="font-size: 20px;"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; color: white; font-size: 14px; line-height: 1;">RG</div>
+                        <div style="font-size: 9px; color: var(--gold); letter-spacing: 1px; font-weight: 700;">ARTESANO</div>
+                    </div>
+                </div>
+                <p style="font-size: 14px; line-height: 1.6;">Creamos muebles de madera excepcionales con artesanía tradicional y diseño contemporáneo desde 1995.</p>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Enlaces Rápidos</h4>
+                <a href="#inicio" class="footer-link">Inicio</a>
+                <a href="#servicios" class="footer-link">Servicios</a>
+                <a href="#galeria" class="footer-link">Galería</a>
+                <a href="#ubicacion" class="footer-link">Ubicación</a>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Síguenos</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-btn" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-btn" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/50664458741" class="social-btn" style="background: var(--gold); color: var(--teal-dark); border-color: var(--gold);" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 RG LA CASA DEL ARTESANO. Todos los derechos reservados.</p>
+            <p style="margin-top: 10px;">Ebanistería Premium | Diseño Personalizado | Calidad Excepcional desde Jacó, Puntarenas</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP BUTTON -->
+    <a href="https://wa.me/50664458741" class="whatsapp-btn" title="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Scroll animations
+        const reveals = document.querySelectorAll('.reveal');
+        
+        window.addEventListener('scroll', () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Lazy load images
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.src = entry.target.src;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            images.forEach(img => imageObserver.observe(img));
+        }
+    </script>
+</body>
+</html>
