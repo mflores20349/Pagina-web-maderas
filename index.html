@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RG La Casa del Artesano — Catálogo de Ebanistería | Jacó, Costa Rica</title>
-<link rel="icon" type="image/png" href="images/logo/rg-monograma.png">
+<link rel="icon" type="image/png" href="/images/logo/rg-monograma.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -151,18 +151,21 @@ ul{list-style:none;}
 .dd-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
 
 /* ============ UBICACIÓN (tono marino) ============ */
-.location{background:var(--canvas);}
-.location-tag{background:var(--teal-deep); color:#fff; padding:14px 28px; font-size:11.5px; letter-spacing:2.4px; text-transform:uppercase; font-weight:600; text-align:center;}
-.location-body{max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1.15fr;}
-.location-info{padding:56px 48px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid var(--line);}
-.location-info h2{font-size:clamp(26px,3vw,36px); color:var(--ink); font-weight:400; margin-bottom:36px;}
-.info-row{display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-top:1px solid var(--line);}
-.info-row:last-child{border-bottom:1px solid var(--line);}
-.info-row i{color:var(--teal); font-size:16px; margin-top:3px; width:20px;}
-.info-row h4{font-size:12px; letter-spacing:1.4px; text-transform:uppercase; font-weight:700; color:var(--ink); margin-bottom:5px;}
-.info-row p{font-size:14.5px; color:var(--ink-soft);}
-.map-wrap{min-height:460px;}
-.map-wrap iframe{width:100%; height:100%; min-height:460px; border:none; display:block; filter:grayscale(15%) saturate(1.05);}
+.location{position:relative; overflow:hidden; background:var(--teal-deep);}
+.location-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;}
+.location-overlay{position:absolute; inset:0; background:linear-gradient(135deg, rgba(10,55,48,.90) 0%, rgba(15,86,72,.82) 55%, rgba(10,55,48,.92) 100%); z-index:1;}
+.location-tag{position:relative; z-index:2; background:rgba(255,255,255,.1); backdrop-filter:none; color:#fff; padding:14px 28px; font-size:11.5px; letter-spacing:2.4px; text-transform:uppercase; font-weight:600; text-align:center; border-bottom:1px solid rgba(255,255,255,.18);}
+.location-body{position:relative; z-index:2; max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1.15fr;}
+.location-info{padding:56px 48px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(255,255,255,.18); color:#fff;}
+.location-info h2{font-size:clamp(26px,3vw,36px); color:#fff; font-weight:400; margin-bottom:36px;}
+.info-row{display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-top:1px solid rgba(255,255,255,.18);}
+.info-row:last-child{border-bottom:1px solid rgba(255,255,255,.18);}
+.info-row i{color:var(--gold-soft); font-size:16px; margin-top:3px; width:20px;}
+.info-row h4{font-size:12px; letter-spacing:1.4px; text-transform:uppercase; font-weight:700; color:#fff; margin-bottom:5px;}
+.info-row p{font-size:14.5px; color:rgba(255,255,255,.8);}
+.map-wrap{min-height:460px; padding:28px 28px 28px 0; box-sizing:border-box;}
+.map-wrap-inner{width:100%; height:100%; min-height:404px; border:6px solid #fff; box-shadow:0 20px 50px rgba(0,0,0,.35);}
+.map-wrap-inner iframe{width:100%; height:100%; min-height:404px; border:none; display:block; filter:grayscale(15%) saturate(1.05);}
 
 /* ============ FOOTER — pantalla completa marina ============ */
 .finale{
@@ -204,7 +207,8 @@ ul{list-style:none;}
   .hero{grid-template-columns:1fr; gap:40px;}
   .hero-photo{order:-1; aspect-ratio:16/10;}
   .location-body{grid-template-columns:1fr;}
-  .location-info{border-right:none; border-bottom:1px solid var(--line);}
+  .location-info{border-right:none; border-bottom:1px solid rgba(255,255,255,.18);}
+  .map-wrap{padding:0 28px 28px;}
   .design-detail{grid-template-columns:1fr;}
 }
 @media (max-width:640px){
@@ -225,7 +229,8 @@ ul{list-style:none;}
 
 <!-- MASTHEAD: logo oficial centrado -->
 <div class="masthead" onclick="Router.home()">
-  <img src="images/logo/rg-logo-completo.png" alt="RG La Casa del Artesano">
+  <img src="/images/logo/rg-logo-completo.png" alt="" onerror="this.style.display='none'; document.getElementById('masthead-fallback').style.display='block';">
+  <div id="masthead-fallback" style="display:none; font-family:'Crimson Text',serif; font-size:26px; letter-spacing:2px; color:var(--teal-deep); font-weight:600;">RG <span style="color:var(--gold); font-size:13px; letter-spacing:4px; display:block; margin-top:4px; text-transform:uppercase;">La Casa del Artesano</span></div>
 </div>
 
 <!-- NAV ROW: 64px, nav izquierda, iconos derecha -->
@@ -259,7 +264,7 @@ ul{list-style:none;}
       </div>
     </div>
     <div class="hero-photo reveal">
-      <img src="images/dormitorio/cama-madera-cajones-01.jpg" alt="Cama de madera maciza — RG La Casa del Artesano">
+      <img src="/images/dormitorio/cama-madera-cajones-01.jpg" alt="Cama de madera maciza — RG La Casa del Artesano">
     </div>
   </section>
 
@@ -289,6 +294,8 @@ ul{list-style:none;}
 
   <!-- UBICACIÓN -->
   <section class="location" id="ubicacion">
+    <img src="/images/ubicacion/playa-jaco-01.jpg" alt="" class="location-bg">
+    <div class="location-overlay"></div>
     <div class="location-tag">Visítanos en Jacó, Puntarenas</div>
     <div class="location-body">
       <div class="location-info reveal">
@@ -299,17 +306,19 @@ ul{list-style:none;}
         <div class="info-row"><i class="fa-solid fa-clock"></i><div><h4>Horario</h4><p>Lun–Vie 8:00am–6:00pm · Sáb 9:00am–3:00pm</p></div></div>
       </div>
       <div class="map-wrap reveal">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.284!2d-84.7386!3d9.4152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5ede6f6f6f6f6f%3A0x0!2sJac%C3%B3%2C%20Puntarenas%2C%20Costa%20Rica!5e0!3m2!1ses!2scr!4v1694000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-wrap-inner">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.284!2d-84.7386!3d9.4152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5ede6f6f6f6f6f%3A0x0!2sJac%C3%B3%2C%20Puntarenas%2C%20Costa%20Rica!5e0!3m2!1ses!2scr!4v1694000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER FINAL — pantalla completa, foto del mar, logo firma -->
   <section class="finale">
-    <img src="images/ubicacion/playa-jaco-01.jpg" alt="Mar de Jacó, Costa Rica" class="finale-bg">
+    <img src="/images/ubicacion/playa-jaco-01.jpg" alt="Mar de Jacó, Costa Rica" class="finale-bg">
     <div class="finale-overlay"></div>
     <div class="finale-content">
-      <div class="finale-seal"><img src="images/logo/rg-monograma.png" alt="RG"></div>
+      <div class="finale-seal"><img src="/images/logo/rg-monograma.png" alt="RG"></div>
       <div class="word">La Casa del Artesano</div>
       <h2>Artesanía hecha a mano, desde la costa de Jacó</h2>
       <div class="finale-contact">
@@ -349,7 +358,7 @@ ul{list-style:none;}
    Para agregar una categoría nueva: añade un objeto al arreglo.
    Para agregar un diseño con foto real: añade un objeto a "designs".
    ============================================================ */
-const PLACEHOLDER = "images/placeholder/imagen-pendiente.jpg";
+const PLACEHOLDER = "/images/placeholder/imagen-pendiente.jpg";
 
 const CATALOG = [
   { group: "Cocina", items: [
@@ -361,10 +370,10 @@ const CATALOG = [
     { id:"sillas", name:"Sillas", desc:"Sillas artesanales individuales y en conjunto.", designs: [] },
     { id:"comedores", name:"Comedores", desc:"Conjuntos de comedor completos, incluyendo mesas altas tipo barra.",
       designs: [
-        { name:"Barra Alta para Comedor con Mosaico", image:"images/comedores/barra-comedor-mosaico-01.jpg",
+        { name:"Barra Alta para Comedor con Mosaico", image:"/images/comedores/barra-comedor-mosaico-01.jpg",
           material:"Madera maciza con incrustaciones de mosaico cerámico pintado a mano",
           desc:"Barra alta tipo desayunador con cuatro banquitos a juego. Superficie superior decorada con mosaico cerámico artesanal; laterales con paneles tipo persiana. Ideal para espacios de comedor informal o cocinas abiertas.",
-          finishes:[{name:"Madera natural con mosaico", image:"images/comedores/barra-comedor-mosaico-01.jpg"}] }
+          finishes:[{name:"Madera natural con mosaico", image:"/images/comedores/barra-comedor-mosaico-01.jpg"}] }
       ] },
     { id:"juegos-comedor", name:"Juegos de Comedor", desc:"Conjuntos de mesa y sillas a juego, diseñados como set completo.", designs: [] },
   ]},
@@ -379,10 +388,10 @@ const CATALOG = [
     { id:"closets", name:"Closets", desc:"Closets empotrados y modulares a la medida del espacio.", designs: [] },
     { id:"vestidores", name:"Vestidores", desc:"Muebles vestidor con espejo y cajonera integrada.",
       designs: [
-        { name:"Vestidor con Espejo y Cajonera", image:"images/closets/ropero-vestidor-espejo-01.jpg",
+        { name:"Vestidor con Espejo y Cajonera", image:"/images/closets/ropero-vestidor-espejo-01.jpg",
           material:"Madera maciza, puertas tipo persiana",
           desc:"Mueble vestidor de dos cuerpos con puertas de persiana a los costados, espejo central biselado y cajonera de tres gavetas con tiradores metálicos.",
-          finishes:[{name:"Barniz miel", image:"images/closets/ropero-vestidor-espejo-01.jpg"}] }
+          finishes:[{name:"Barniz miel", image:"/images/closets/ropero-vestidor-espejo-01.jpg"}] }
       ] },
     { id:"roperos", name:"Roperos", desc:"Roperos de una o varias puertas para almacenaje de ropa.", designs: [] },
     { id:"gaveteros", name:"Gaveteros", desc:"Muebles de gavetas para dormitorio o closet.", designs: [] },
@@ -399,10 +408,10 @@ const CATALOG = [
     { id:"muebles-dormitorio", name:"Muebles para Dormitorio", desc:"Mobiliario complementario para habitación.", designs: [] },
     { id:"camas", name:"Camas", desc:"Camas en madera maciza, con o sin almacenaje integrado.",
       designs: [
-        { name:"Cama con Cajones de Almacenaje", image:"images/dormitorio/cama-madera-cajones-01.jpg",
+        { name:"Cama con Cajones de Almacenaje", image:"/images/dormitorio/cama-madera-cajones-01.jpg",
           material:"Madera maciza, tono miel",
           desc:"Cama tamaño king con cabecera de paneles y sistema de cajones de almacenaje integrados en la base: dos gavetas laterales por lado con guías metálicas.",
-          finishes:[{name:"Barniz natural tono miel", image:"images/dormitorio/cama-madera-cajones-01.jpg"}] }
+          finishes:[{name:"Barniz natural tono miel", image:"/images/dormitorio/cama-madera-cajones-01.jpg"}] }
       ] },
     { id:"mesas-noche", name:"Mesas de Noche", desc:"Mesas de noche a juego con el resto del dormitorio.", designs: [] },
   ]},
@@ -410,19 +419,19 @@ const CATALOG = [
     { id:"libreros", name:"Libreros", desc:"Libreros y estantes verticales para sala u oficina.", designs: [] },
     { id:"estanterias", name:"Estanterías", desc:"Estanterías modulares para exhibición y almacenaje.",
       designs: [
-        { name:"Estantería / Vinera Modular en Teca", image:"images/estanterias/estanteria-vinera-teca-01.jpg",
+        { name:"Estantería / Vinera Modular en Teca", image:"/images/estanterias/estanteria-vinera-teca-01.jpg",
           material:"Teca maciza",
           desc:"Estantería modular con divisiones tipo panal para exhibición y almacenaje de botellas o piezas decorativas. Estructura reforzada con patas de apoyo en ángulo.",
-          finishes:[{name:"Teca natural", image:"images/estanterias/estanteria-vinera-teca-01.jpg"}] }
+          finishes:[{name:"Teca natural", image:"/images/estanterias/estanteria-vinera-teca-01.jpg"}] }
       ] },
   ]},
   { group: "Gabinetes", items: [
     { id:"gabinetes", name:"Gabinetes", desc:"Gabinetes decorativos y de almacenaje con talla artesanal.",
       designs: [
-        { name:"Gabinete Tallado Estilo Clásico", image:"images/gabinetes/gabinete-tallado-clasico-01.jpg",
+        { name:"Gabinete Tallado Estilo Clásico", image:"/images/gabinetes/gabinete-tallado-clasico-01.jpg",
           material:"Madera maciza, tono oscuro",
           desc:"Gabinete de dos puertas con talla artesanal en relieve (medallones tipo roseta), remate superior curvo y patas talladas de estilo clásico.",
-          finishes:[{name:"Tono oscuro / nogal", image:"images/gabinetes/gabinete-tallado-clasico-01.jpg"}] }
+          finishes:[{name:"Tono oscuro / nogal", image:"/images/gabinetes/gabinete-tallado-clasico-01.jpg"}] }
       ] },
   ]},
   { group: "Otros", items: [
