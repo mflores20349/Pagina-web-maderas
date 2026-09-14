@@ -150,10 +150,11 @@ ul{list-style:none;}
 .finish-note{margin-top:18px; padding:16px 18px; background:var(--teal-pale); border-left:2px solid var(--teal); font-size:13.5px; color:var(--ink-soft); line-height:1.7;}
 .dd-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
 
-/* ============ UBICACIÓN (tono marino) ============ */
-.location{position:relative; overflow:hidden; background:var(--teal-deep);}
-.location-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;}
-.location-overlay{position:absolute; inset:0; background:linear-gradient(135deg, rgba(10,55,48,.90) 0%, rgba(15,86,72,.82) 55%, rgba(10,55,48,.92) 100%); z-index:1;}
+/* ============ UBICACIÓN + CIERRE — una sola foto de fondo continua ============ */
+.marine-wrap{position:relative; overflow:hidden; background:var(--teal-deep);}
+.marine-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; z-index:0;}
+.location{position:relative;}
+.location-overlay{position:absolute; inset:0; background:linear-gradient(135deg, rgba(10,55,48,.82) 0%, rgba(15,86,72,.72) 55%, rgba(10,55,48,.84) 100%); z-index:1;}
 .location-tag{position:relative; z-index:2; background:rgba(255,255,255,.1); backdrop-filter:none; color:#fff; padding:14px 28px; font-size:11.5px; letter-spacing:2.4px; text-transform:uppercase; font-weight:600; text-align:center; border-bottom:1px solid rgba(255,255,255,.18);}
 .location-body{position:relative; z-index:2; max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1.15fr;}
 .location-info{padding:56px 48px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(255,255,255,.18); color:#fff;}
@@ -169,15 +170,13 @@ ul{list-style:none;}
 
 /* ============ FOOTER — pantalla completa marina ============ */
 .finale{
-  position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden;
-  background:#0a3730;
+  position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center;
 }
-.finale-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
-.finale-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,86,72,.55) 0%, rgba(15,86,72,.35) 45%, rgba(10,55,48,.75) 100%);}
+.finale-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,86,72,.40) 0%, rgba(15,86,72,.30) 45%, rgba(10,55,48,.70) 100%); z-index:1;}
 .finale-content{position:relative; z-index:2; text-align:center; color:#fff; padding:40px 24px;}
 .finale-seal{
-  width:96px; height:96px; background:#fff; border:1px solid var(--gold-soft); margin:0 auto 26px; display:flex;
-  align-items:center; justify-content:center; padding:14px;
+  width:100px; height:100px; background:#fff; border:1px solid var(--gold-soft); margin:0 auto 26px; display:flex;
+  align-items:center; justify-content:center; padding:17px; border-radius:50%; box-shadow:0 6px 18px rgba(0,0,0,.2);
 }
 .finale-seal img{width:100%; height:100%; object-fit:contain;}
 .finale-content .word{font-size:13px; letter-spacing:6px; text-transform:uppercase; margin-bottom:10px; color:var(--gold-soft); font-weight:600;}
@@ -189,9 +188,10 @@ ul{list-style:none;}
 
 .wa-float{
   position:fixed; bottom:26px; right:26px; width:56px; height:56px; background:#1f5650; color:#fff; display:flex;
-  align-items:center; justify-content:center; font-size:25px; z-index:999; box-shadow:0 6px 18px rgba(0,0,0,.18); transition:background .2s;
+  align-items:center; justify-content:center; font-size:25px; z-index:999; box-shadow:0 6px 18px rgba(0,0,0,.18); transition:background .2s, transform .2s;
+  border-radius:50%;
 }
-.wa-float:hover{background:var(--teal-deep);}
+.wa-float:hover{background:var(--teal-deep); transform:scale(1.08);}
 
 /* ============ SCROLL REVEAL ============ */
 .reveal{opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s ease;}
@@ -257,14 +257,14 @@ ul{list-style:none;}
       <span class="kicker">Ebanistería a Medida · Jacó, Costa Rica</span>
       <h1>Piezas de madera maciza, hechas a mano para cada espacio</h1>
       <div class="rule"></div>
-      <p>Diseñamos y fabricamos muebles a medida: dormitorio, comedor, closets, oficina y proyectos personalizados. Explora la colección por categoría y consulta el diseño que más te interese.</p>
+      <p>Diseñamos y fabricamos muebles a medida desde 1995: cocina, dormitorio, sala, oficina y proyectos personalizados. Explora la colección por categoría y consulta el diseño que más te interese.</p>
       <div class="hero-actions">
         <a href="#coleccion" class="btn" onclick="document.getElementById('coleccion').scrollIntoView()">Ver Colección</a>
         <a href="https://wa.me/50664458741" class="btn btn-solid"><i class="fa-brands fa-whatsapp"></i> Solicitar Información</a>
       </div>
     </div>
     <div class="hero-photo reveal">
-      <img src="/images/dormitorio/cama-madera-cajones-01.jpg" alt="Cama de madera maciza — RG La Casa del Artesano">
+      <img src="/images/cocina/cocina-isla-marmol-01.jpg" alt="Cocina integral con isla de mármol — RG La Casa del Artesano">
     </div>
   </section>
 
@@ -292,43 +292,45 @@ ul{list-style:none;}
     <div class="mosaic-grid reveal" id="featuredContainer"></div>
   </section>
 
-  <!-- UBICACIÓN -->
-  <section class="location" id="ubicacion">
-    <img src="/images/ubicacion/playa-jaco-01.jpg" alt="" class="location-bg">
-    <div class="location-overlay"></div>
-    <div class="location-tag">Visítanos en Jacó, Puntarenas</div>
-    <div class="location-body">
-      <div class="location-info reveal">
-        <h2>Ubicación &amp; Contacto</h2>
-        <div class="info-row"><i class="fa-solid fa-location-dot"></i><div><h4>Dirección</h4><p>Jacó, Puntarenas, Costa Rica</p></div></div>
-        <div class="info-row"><i class="fa-solid fa-phone"></i><div><h4>Teléfono</h4><p>+506 6445-8741 · WhatsApp +506 8908-6654</p></div></div>
-        <div class="info-row"><i class="fa-solid fa-envelope"></i><div><h4>Email</h4><p>info@rgcasadelartesano.com</p></div></div>
-        <div class="info-row"><i class="fa-solid fa-clock"></i><div><h4>Horario</h4><p>Lun–Vie 7:00am–5:00pm</p></div></div>
-      </div>
-      <div class="map-wrap reveal">
-        <div class="map-wrap-inner">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.284!2d-84.7386!3d9.4152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5ede6f6f6f6f6f%3A0x0!2sJac%C3%B3%2C%20Puntarenas%2C%20Costa%20Rica!5e0!3m2!1ses!2scr!4v1694000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <!-- UBICACIÓN + CIERRE FINAL comparten UNA sola foto de fondo continua (sin corte entre ambas) -->
+  <div class="marine-wrap">
+    <img src="/images/ubicacion/playa-atardecer-01.jpg" alt="Atardecer en la playa de Jacó, Costa Rica" class="marine-bg">
+
+    <section class="location" id="ubicacion">
+      <div class="location-overlay"></div>
+      <div class="location-tag">Visítanos en Jacó, Puntarenas</div>
+      <div class="location-body">
+        <div class="location-info reveal">
+          <h2>Ubicación &amp; Contacto</h2>
+          <div class="info-row"><i class="fa-solid fa-location-dot"></i><div><h4>Dirección</h4><p>Calle Principal 123, Jacó, Puntarenas, Costa Rica</p></div></div>
+          <div class="info-row"><i class="fa-solid fa-phone"></i><div><h4>Teléfono</h4><p>+506 6445-8741 · WhatsApp +506 8908-6654</p></div></div>
+          <div class="info-row"><i class="fa-solid fa-envelope"></i><div><h4>Email</h4><p>info@rgcasadelartesano.com</p></div></div>
+          <div class="info-row"><i class="fa-solid fa-clock"></i><div><h4>Horario</h4><p>Lun–Vie 8:00am–6:00pm · Sáb 9:00am–3:00pm</p></div></div>
+        </div>
+        <div class="map-wrap reveal">
+          <div class="map-wrap-inner">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.284!2d-84.7386!3d9.4152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5ede6f6f6f6f6f%3A0x0!2sJac%C3%B3%2C%20Puntarenas%2C%20Costa%20Rica!5e0!3m2!1ses!2scr!4v1694000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER FINAL — pantalla completa, foto del mar, logo firma -->
-  <section class="finale">
-    <img src="/images/ubicacion/playa-jaco-01.jpg" alt="Mar de Jacó, Costa Rica" class="finale-bg">
-    <div class="finale-overlay"></div>
-    <div class="finale-content">
-      <div class="finale-seal"><img src="/images/logo/rg-monograma.png" alt="RG"></div>
-      <div class="word">La Casa del Artesano</div>
-      <h2>Artesanía hecha a mano, desde la costa de Jacó</h2>
-      <div class="finale-contact">
-        <a href="https://wa.me/50664458741"><i class="fa-brands fa-whatsapp"></i> +506 8908-6654</a>
-        <a href="mailto:info@rgcasadelartesano.com">info@rgcasadelartesano.com</a>
-        <a onclick="Router.home();setTimeout(()=>document.getElementById('coleccion').scrollIntoView(),0)">Ver colección</a>
+    <!-- FOOTER FINAL — pantalla completa, logo firma -->
+    <section class="finale">
+      <div class="finale-overlay"></div>
+      <div class="finale-content">
+        <div class="finale-seal"><img src="/images/logo/rg-monograma.png" alt="RG"></div>
+        <div class="word">La Casa del Artesano</div>
+        <h2>Artesanía hecha a mano, desde la costa de Jacó</h2>
+        <div class="finale-contact">
+          <a href="https://wa.me/50664458741"><i class="fa-brands fa-whatsapp"></i> +506 8908-6654</a>
+          <a href="mailto:info@rgcasadelartesano.com">info@rgcasadelartesano.com</a>
+          <a onclick="Router.home();setTimeout(()=>document.getElementById('coleccion').scrollIntoView(),0)">Ver colección</a>
+        </div>
+        <div class="finale-copy">&copy; 2026 RG La Casa del Artesano — Jacó, Puntarenas, Costa Rica</div>
       </div>
-      <div class="finale-copy">&copy; 2026 RG La Casa del Artesano — Jacó, Puntarenas, Costa Rica</div>
-    </div>
-  </section>
+    </section>
+  </div>
 
 </div>
 
@@ -361,101 +363,68 @@ ul{list-style:none;}
 const PLACEHOLDER = "/images/placeholder/imagen-pendiente.jpg";
 
 const CATALOG = [
-  { group: "Cocina", items: [
-    { id:"muebles-cocina", name:"Muebles de Cocina", desc:"Módulos y componentes individuales para cocina: alacenas, gabinetes bajos, islas y más.", designs: [] },
-    { id:"cocinas-completas", name:"Cocinas Completas", desc:"Sistemas integrales de cocina, diseñados a la medida del espacio.", designs: [] },
-  ]},
-  { group: "Comedor", items: [
-    { id:"mesas", name:"Mesas", desc:"Mesas de comedor, centro y auxiliares en madera maciza.", designs: [] },
-    { id:"sillas", name:"Sillas", desc:"Sillas artesanales individuales y en conjunto.", designs: [] },
-    { id:"comedores", name:"Comedores", desc:"Conjuntos de comedor completos, incluyendo mesas altas tipo barra.",
-      designs: [
-        { name:"Barra Alta para Comedor con Mosaico", image:"/images/comedores/barra-comedor-mosaico-01.jpg",
-          material:"Madera maciza con incrustaciones de mosaico cerámico pintado a mano",
-          desc:"Barra alta tipo desayunador con cuatro banquitos a juego. Superficie superior decorada con mosaico cerámico artesanal; laterales con paneles tipo persiana. Ideal para espacios de comedor informal o cocinas abiertas.",
-          finishes:[{name:"Madera natural con mosaico", image:"/images/comedores/barra-comedor-mosaico-01.jpg"}] }
-      ] },
-    { id:"juegos-comedor", name:"Juegos de Comedor", desc:"Conjuntos de mesa y sillas a juego, diseñados como set completo.", designs: [] },
-  ]},
-  { group: "Puertas", items: [
-    { id:"puertas", name:"Puertas", desc:"Puertas interiores y exteriores en madera maciza, lisas o talladas.", designs: [] },
-  ]},
-  { group: "Baño", items: [
-    { id:"muebles-bano", name:"Muebles de Baño", desc:"Muebles bajo lavamanos, gabinetes y accesorios para baño.", designs: [] },
-    { id:"banos", name:"Baños", desc:"Proyectos integrales de mobiliario para baño.", designs: [] },
-  ]},
-  { group: "Closets y Vestidores", items: [
-    { id:"closets", name:"Closets", desc:"Closets empotrados y modulares a la medida del espacio.", designs: [] },
-    { id:"vestidores", name:"Vestidores", desc:"Muebles vestidor con espejo y cajonera integrada.",
-      designs: [
-        { name:"Vestidor con Espejo y Cajonera", image:"/images/closets/ropero-vestidor-espejo-01.jpg",
-          material:"Madera maciza, puertas tipo persiana",
-          desc:"Mueble vestidor de dos cuerpos con puertas de persiana a los costados, espejo central biselado y cajonera de tres gavetas con tiradores metálicos.",
-          finishes:[{name:"Barniz miel", image:"/images/closets/ropero-vestidor-espejo-01.jpg"}] }
-      ] },
-    { id:"roperos", name:"Roperos", desc:"Roperos de una o varias puertas para almacenaje de ropa.", designs: [] },
-    { id:"gaveteros", name:"Gaveteros", desc:"Muebles de gavetas para dormitorio o closet.", designs: [] },
-  ]},
-  { group: "Oficina", items: [
-    { id:"escritorios", name:"Escritorios", desc:"Escritorios ejecutivos y de trabajo en madera maciza.", designs: [] },
-    { id:"muebles-oficina", name:"Muebles para Oficina", desc:"Libreros, archiveros y mobiliario complementario de oficina.", designs: [] },
-  ]},
-  { group: "Sala", items: [
-    { id:"centros-entretenimiento", name:"Centros de Entretenimiento", desc:"Muebles para televisión y equipo de sonido.", designs: [] },
-    { id:"muebles-sala", name:"Muebles para Sala", desc:"Sofás con estructura de madera, mesas de centro y auxiliares.", designs: [] },
-  ]},
-  { group: "Dormitorio", items: [
-    { id:"muebles-dormitorio", name:"Muebles para Dormitorio", desc:"Mobiliario complementario para habitación.", designs: [] },
-    { id:"camas", name:"Camas", desc:"Camas en madera maciza, con o sin almacenaje integrado.",
-      designs: [
-        { name:"Cama con Cajones de Almacenaje", image:"/images/dormitorio/cama-madera-cajones-01.jpg",
-          material:"Madera maciza, tono miel",
-          desc:"Cama tamaño king con cabecera de paneles y sistema de cajones de almacenaje integrados en la base: dos gavetas laterales por lado con guías metálicas.",
-          finishes:[{name:"Barniz natural tono miel", image:"/images/dormitorio/cama-madera-cajones-01.jpg"}] }
-      ] },
-    { id:"mesas-noche", name:"Mesas de Noche", desc:"Mesas de noche a juego con el resto del dormitorio.", designs: [] },
-  ]},
-  { group: "Estanterías", items: [
-    { id:"libreros", name:"Libreros", desc:"Libreros y estantes verticales para sala u oficina.", designs: [] },
-    { id:"estanterias", name:"Estanterías", desc:"Estanterías modulares para exhibición y almacenaje.",
-      designs: [
-        { name:"Estantería / Vinera Modular en Teca", image:"/images/estanterias/estanteria-vinera-teca-01.jpg",
-          material:"Teca maciza",
-          desc:"Estantería modular con divisiones tipo panal para exhibición y almacenaje de botellas o piezas decorativas. Estructura reforzada con patas de apoyo en ángulo.",
-          finishes:[{name:"Teca natural", image:"/images/estanterias/estanteria-vinera-teca-01.jpg"}] }
-      ] },
-  ]},
-  { group: "Gabinetes", items: [
-    { id:"gabinetes", name:"Gabinetes", desc:"Gabinetes decorativos y de almacenaje con talla artesanal.",
-      designs: [
-        { name:"Gabinete Tallado Estilo Clásico", image:"/images/gabinetes/gabinete-tallado-clasico-01.jpg",
-          material:"Madera maciza, tono oscuro",
-          desc:"Gabinete de dos puertas con talla artesanal en relieve (medallones tipo roseta), remate superior curvo y patas talladas de estilo clásico.",
-          finishes:[{name:"Tono oscuro / nogal", image:"/images/gabinetes/gabinete-tallado-clasico-01.jpg"}] }
-      ] },
-  ]},
-  { group: "Otros", items: [
-    { id:"personalizados", name:"Muebles Personalizados", desc:"Proyectos a medida según diseño y especificaciones del cliente.", designs: [] },
-    { id:"otros-muebles", name:"Otros Muebles", desc:"Otras piezas de fabricación artesanal.", designs: [] },
-  ]},
+  { id:"muebles-cocina", name:"Muebles de Cocina", desc:"Módulos, gabinetes e islas de cocina fabricados a medida.",
+    designs: [
+      { name:"Cocina Integral con Isla de Mármol", image:"/images/cocina/cocina-isla-marmol-01.jpg",
+        material:"Madera maciza con cubierta en mármol",
+        desc:"Cocina integral con gabinetes altos y bajos, isla central con cubierta en mármol, y sistema de iluminación indirecta integrada en cielo raso y bajo gabinetes.",
+        finishes:[{name:"Madera con cubierta de mármol", image:"/images/cocina/cocina-isla-marmol-01.jpg"}] }
+    ] },
+  { id:"camas", name:"Camas", desc:"Camas en madera maciza, con o sin almacenaje integrado.",
+    designs: [
+      { name:"Cama con Cajones de Almacenaje", image:"/images/dormitorio/cama-madera-cajones-01.jpg",
+        material:"Madera maciza, tono miel",
+        desc:"Cama tamaño king con cabecera de paneles y sistema de cajones de almacenaje integrados en la base: dos gavetas laterales por lado con guías metálicas.",
+        finishes:[{name:"Barniz natural tono miel", image:"/images/dormitorio/cama-madera-cajones-01.jpg"}] }
+    ] },
+  { id:"estanterias", name:"Estanterías", desc:"Estanterías modulares para exhibición y almacenaje.",
+    designs: [
+      { name:"Estantería / Vinera Modular en Teca", image:"/images/estanterias/estanteria-vinera-teca-01.jpg",
+        material:"Teca maciza",
+        desc:"Estantería modular con divisiones tipo panal para exhibición y almacenaje de botellas o piezas decorativas. Estructura reforzada con patas de apoyo en ángulo.",
+        finishes:[{name:"Teca natural", image:"/images/estanterias/estanteria-vinera-teca-01.jpg"}] }
+    ] },
+  { id:"muebles-sala", name:"Muebles de Sala", desc:"Sofás, mesas de centro, gabinetes y piezas decorativas para sala.",
+    designs: [
+      { name:"Gabinete Tallado Estilo Clásico", image:"/images/gabinetes/gabinete-tallado-clasico-01.jpg",
+        material:"Madera maciza, tono oscuro",
+        desc:"Gabinete de dos puertas con talla artesanal en relieve (medallones tipo roseta), remate superior curvo y patas talladas de estilo clásico. Pieza decorativa para sala o recibidor.",
+        finishes:[{name:"Tono oscuro / nogal", image:"/images/gabinetes/gabinete-tallado-clasico-01.jpg"}] }
+    ] },
+  { id:"roperos", name:"Roperos", desc:"Roperos y vestidores para almacenaje de ropa.",
+    designs: [
+      { name:"Ropero Vestidor con Espejo y Cajonera", image:"/images/closets/ropero-vestidor-espejo-01.jpg",
+        material:"Madera maciza, puertas tipo persiana",
+        desc:"Ropero de dos cuerpos con puertas de persiana a los costados, espejo central biselado y cajonera de tres gavetas con tiradores metálicos.",
+        finishes:[{name:"Barniz miel", image:"/images/closets/ropero-vestidor-espejo-01.jpg"}] }
+    ] },
+  { id:"escritorios", name:"Escritorios", desc:"Escritorios ejecutivos y de trabajo en madera maciza.", designs: [] },
+  { id:"muebles-oficina", name:"Muebles de Oficina", desc:"Libreros, archiveros y mobiliario complementario de oficina.", designs: [] },
+  { id:"mesas-noche", name:"Mesas de Noche", desc:"Mesas de noche a juego con el resto del dormitorio.", designs: [] },
+  { id:"otros", name:"Otros", desc:"Diseños creativos y piezas fuera de lo común: propuestas únicas de ebanistería.",
+    designs: [
+      { name:"Barra Alta para Comedor con Mosaico", image:"/images/comedores/barra-comedor-mosaico-01.jpg",
+        material:"Madera maciza con incrustaciones de mosaico cerámico pintado a mano",
+        desc:"Barra alta tipo desayunador con cuatro banquitos a juego. Superficie superior decorada con mosaico cerámico artesanal pintado a mano; laterales con paneles tipo persiana. Un diseño fuera de lo convencional para espacios de comedor informal o cocinas abiertas.",
+        finishes:[{name:"Madera natural con mosaico", image:"/images/comedores/barra-comedor-mosaico-01.jpg"}] }
+    ] },
 ];
 
 function findCategory(id){
-  for(const g of CATALOG){ const it = g.items.find(i=>i.id===id); if(it) return {cat:it, group:g.group}; }
-  return null;
+  const cat = CATALOG.find(i=>i.id===id);
+  return cat ? {cat} : null;
 }
 function allCategoriesFlat(){
-  return CATALOG.flatMap(g=>g.items.map(i=>({...i, group:g.group})));
+  return CATALOG;
 }
 
-/* ============ RENDER: Colección (grid 4 columnas por grupo) ============ */
+/* ============ RENDER: Colección (grid 4 columnas, catálogo plano) ============ */
 function renderGroups(){
   const el = document.getElementById('groupsContainer');
-  el.innerHTML = CATALOG.map(g => `
+  el.innerHTML = `
     <div class="group-block reveal">
-      <div class="group-label">${g.group}</div>
       <div class="cube-grid">
-        ${g.items.map(cat => {
+        ${CATALOG.map(cat => {
           const hasPhoto = cat.designs.length > 0;
           const img = hasPhoto ? cat.designs[0].image : PLACEHOLDER;
           const flag = hasPhoto ? `<span class="cube-flag is-real">Fotografía Real</span>` : `<span class="cube-flag is-pending">Próximamente</span>`;
@@ -472,7 +441,7 @@ function renderGroups(){
         }).join('')}
       </div>
     </div>
-  `).join('');
+  `;
   observeReveals();
 }
 
