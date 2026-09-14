@@ -85,12 +85,6 @@ ul{list-style:none;}
 .cube-thumb{position:relative; aspect-ratio:1/1; overflow:hidden; background:#f4f4f4;}
 .cube-thumb img{width:100%; height:100%; object-fit:cover; border-radius:0; transition:opacity .35s;}
 .cube-card:hover .cube-thumb img{opacity:.82;}
-.cube-flag{
-  position:absolute; top:0; left:0; background:var(--canvas); color:var(--ink); font-size:10px; letter-spacing:1.4px;
-  text-transform:uppercase; font-weight:600; padding:7px 11px; border-right:1px solid var(--line); border-bottom:1px solid var(--line);
-}
-.cube-flag.is-real{color:var(--teal-deep);}
-.cube-flag.is-pending{color:var(--ink-soft);}
 .cube-body{padding:20px 4px 8px;}
 .cube-body h4{font-size:19px; font-weight:400; color:var(--ink); margin-bottom:6px;}
 .cube-body .count{font-size:11.5px; letter-spacing:1px; text-transform:uppercase; color:var(--ink-soft); font-family:'Inter',sans-serif;}
@@ -284,10 +278,10 @@ ul{list-style:none;}
   <section class="block" id="destacados" style="background:var(--teal-pale);">
     <div class="block-head reveal">
       <div>
-        <span class="kicker">Trabajos Fotografiados</span>
+        <span class="kicker">Piezas Destacadas</span>
         <h2>Mosaico Editorial</h2>
       </div>
-      <p>Piezas de nuestro taller, fotografiadas y listas para consultar.</p>
+      <p>Una selección de nuestro portafolio, lista para consultar.</p>
     </div>
     <div class="mosaic-grid reveal" id="featuredContainer"></div>
   </section>
@@ -363,50 +357,294 @@ ul{list-style:none;}
 const PLACEHOLDER = "/images/placeholder/imagen-pendiente.jpg";
 
 const CATALOG = [
-  { id:"muebles-cocina", name:"Muebles de Cocina", desc:"Módulos, gabinetes e islas de cocina fabricados a medida.",
+  { id:"muebles-cocina", name:"Muebles de Cocina", desc:"Módulos, gabinetes, islas de cocina y mesas de comedor fabricados a medida.",
     designs: [
       { name:"Cocina Integral con Isla de Mármol", image:"/images/cocina/cocina-isla-marmol-01.jpg",
         material:"Madera maciza con cubierta en mármol",
         desc:"Cocina integral con gabinetes altos y bajos, isla central con cubierta en mármol, y sistema de iluminación indirecta integrada en cielo raso y bajo gabinetes.",
-        finishes:[{name:"Madera con cubierta de mármol", image:"/images/cocina/cocina-isla-marmol-01.jpg"}] }
+        finishes:[{name:"Madera con cubierta de mármol", image:"/images/cocina/cocina-isla-marmol-01.jpg"}] },
+      { name:"Cocina con Gabinetes Negros", image:"/images/cocina/cocina-gabinetes-negros-01.jpg",
+        material:"Madera y laminado, tono negro mate",
+        desc:"Cocina moderna con gabinetes superiores en negro mate, cubierta clara y estantería abierta.",
+        finishes:[{name:"Madera y laminado, tono negro mate", image:"/images/cocina/cocina-gabinetes-negros-01.jpg"}] },
+      { name:"Cocina Integral Tono Cálido", image:"/images/cocina/cocina-madera-calida-01.jpg",
+        material:"Madera maciza tono cálido",
+        desc:"Cocina integral con gabinetes en tono madera cálida, isla central y cubierta en piedra oscura.",
+        finishes:[{name:"Madera maciza tono cálido", image:"/images/cocina/cocina-madera-calida-01.jpg"}] },
+      { name:"Cocina con Isla Curva", image:"/images/cocina/cocina-isla-curva-01.jpg",
+        material:"Madera maciza con cubierta en piedra",
+        desc:"Cocina con isla de esquinas curvas, gabinetes en madera natural e iluminación colgante.",
+        finishes:[{name:"Madera maciza con cubierta en piedra", image:"/images/cocina/cocina-isla-curva-01.jpg"}] },
+      { name:"Mesa de Comedor con Río de Resina Azul", image:"/images/cocina/mesa-comedor-rio-azul-01.jpg",
+        material:"Madera maciza con inlay de resina epóxica azul",
+        desc:"Mesa de comedor artesanal con veta de río en resina azul translúcida sobre base de madera maciza.",
+        finishes:[{name:"Madera maciza con inlay de resina epóxica azul", image:"/images/cocina/mesa-comedor-rio-azul-01.jpg"}] },
+      { name:"Mesa de Comedor con Vetas en Resina Negra", image:"/images/cocina/mesa-comedor-resina-negra-01.jpg",
+        material:"Madera maciza con inlay de resina epóxica negra",
+        desc:"Mesa de comedor con relleno decorativo de resina negra siguiendo las grietas naturales de la madera.",
+        finishes:[{name:"Madera maciza con inlay de resina epóxica negra", image:"/images/cocina/mesa-comedor-resina-negra-01.jpg"}] },
+      { name:"Mesa de Comedor en Roble", image:"/images/cocina/mesa-comedor-roble-simple-01.jpg",
+        material:"Roble macizo",
+        desc:"Mesa de comedor rectangular de líneas simples en roble macizo natural.",
+        finishes:[{name:"Roble macizo", image:"/images/cocina/mesa-comedor-roble-simple-01.jpg"}] },
+      { name:"Mesa de Comedor en Nogal", image:"/images/cocina/mesa-comedor-nogal-01.jpg",
+        material:"Nogal macizo",
+        desc:"Mesa de comedor en nogal con patas torneadas y acabado clásico.",
+        finishes:[{name:"Nogal macizo", image:"/images/cocina/mesa-comedor-nogal-01.jpg"}] },
+      { name:"Silla de Comedor Estilo Wishbone", image:"/images/cocina/silla-comedor-wishbone-01.jpg",
+        material:"Madera maciza con asiento tejido",
+        desc:"Silla de comedor de diseño escandinavo con respaldo curvo y asiento tejido a mano.",
+        finishes:[{name:"Madera maciza con asiento tejido", image:"/images/cocina/silla-comedor-wishbone-01.jpg"}] },
+      { name:"Set de Sillas de Comedor con Rejilla", image:"/images/cocina/sillas-comedor-rejilla-01.jpg",
+        material:"Madera maciza con respaldo de rejilla",
+        desc:"Conjunto de sillas de comedor con respaldo de rejilla tejida y estructura en madera natural.",
+        finishes:[{name:"Madera maciza con respaldo de rejilla", image:"/images/cocina/sillas-comedor-rejilla-01.jpg"}] },
+      { name:"Silla de Comedor en Madera Contrachapada", image:"/images/cocina/silla-comedor-contrachapado-01.jpg",
+        material:"Madera contrachapada moldeada",
+        desc:"Silla de comedor de líneas moldeadas, estilo mediados de siglo.",
+        finishes:[{name:"Madera contrachapada moldeada", image:"/images/cocina/silla-comedor-contrachapado-01.jpg"}] },
+      { name:"Mesa de Comedor Grande con Río de Resina", image:"/images/cocina/mesa-comedor-rio-azul-grande-01.jpg",
+        material:"Madera maciza con inlay de resina azul",
+        desc:"Mesa de comedor extendida con veta de río en resina azul y juego completo de diez sillas.",
+        finishes:[{name:"Madera maciza con inlay de resina azul", image:"/images/cocina/mesa-comedor-rio-azul-grande-01.jpg"}] },
+      { name:"Mesa de Comedor Rústica con Base en X", image:"/images/cocina/mesa-comedor-rustica-x-01.jpg",
+        material:"Madera maciza con base metálica",
+        desc:"Mesa de comedor de estilo rústico industrial con base en X de metal y sillas a juego.",
+        finishes:[{name:"Madera maciza con base metálica", image:"/images/cocina/mesa-comedor-rustica-x-01.jpg"}] },
+      { name:"Set de Comedor en Nogal", image:"/images/cocina/mesa-comedor-nogal-set-01.jpg",
+        material:"Nogal macizo",
+        desc:"Mesa de comedor en nogal con juego completo de sillas a tono.",
+        finishes:[{name:"Nogal macizo", image:"/images/cocina/mesa-comedor-nogal-set-01.jpg"}] },
+      { name:"Set de Comedor con Seis Sillas", image:"/images/cocina/set-comedor-seis-sillas-01.jpg",
+        material:"Madera clara maciza",
+        desc:"Mesa de comedor con seis sillas en madera clara, diseño simple y funcional.",
+        finishes:[{name:"Madera clara maciza", image:"/images/cocina/set-comedor-seis-sillas-01.jpg"}] },
+      { name:"Mesa de Comedor de Forma Orgánica", image:"/images/cocina/mesa-comedor-organica-01.jpg",
+        material:"Madera maciza",
+        desc:"Mesa de comedor ovalada de bordes orgánicos y patas esculturales.",
+        finishes:[{name:"Madera maciza", image:"/images/cocina/mesa-comedor-organica-01.jpg"}] }
     ] },
-  { id:"camas", name:"Camas", desc:"Camas en madera maciza, con o sin almacenaje integrado.",
-    designs: [
-      { name:"Cama con Cajones de Almacenaje", image:"/images/dormitorio/cama-madera-cajones-01.jpg",
-        material:"Madera maciza, tono miel",
-        desc:"Cama tamaño king con cabecera de paneles y sistema de cajones de almacenaje integrados en la base: dos gavetas laterales por lado con guías metálicas.",
-        finishes:[{name:"Barniz natural tono miel", image:"/images/dormitorio/cama-madera-cajones-01.jpg"}] }
-    ] },
-  { id:"estanterias", name:"Estanterías", desc:"Estanterías modulares para exhibición y almacenaje.",
-    designs: [
-      { name:"Estantería / Vinera Modular en Teca", image:"/images/estanterias/estanteria-vinera-teca-01.jpg",
-        material:"Teca maciza",
-        desc:"Estantería modular con divisiones tipo panal para exhibición y almacenaje de botellas o piezas decorativas. Estructura reforzada con patas de apoyo en ángulo.",
-        finishes:[{name:"Teca natural", image:"/images/estanterias/estanteria-vinera-teca-01.jpg"}] }
-    ] },
-  { id:"muebles-sala", name:"Muebles de Sala", desc:"Sofás, mesas de centro, gabinetes y piezas decorativas para sala.",
-    designs: [
-      { name:"Gabinete Tallado Estilo Clásico", image:"/images/gabinetes/gabinete-tallado-clasico-01.jpg",
-        material:"Madera maciza, tono oscuro",
-        desc:"Gabinete de dos puertas con talla artesanal en relieve (medallones tipo roseta), remate superior curvo y patas talladas de estilo clásico. Pieza decorativa para sala o recibidor.",
-        finishes:[{name:"Tono oscuro / nogal", image:"/images/gabinetes/gabinete-tallado-clasico-01.jpg"}] }
-    ] },
-  { id:"roperos", name:"Roperos", desc:"Roperos y vestidores para almacenaje de ropa.",
-    designs: [
-      { name:"Ropero Vestidor con Espejo y Cajonera", image:"/images/closets/ropero-vestidor-espejo-01.jpg",
-        material:"Madera maciza, puertas tipo persiana",
-        desc:"Ropero de dos cuerpos con puertas de persiana a los costados, espejo central biselado y cajonera de tres gavetas con tiradores metálicos.",
-        finishes:[{name:"Barniz miel", image:"/images/closets/ropero-vestidor-espejo-01.jpg"}] }
-    ] },
+  { id:"camas", name:"Camas", desc:"Camas en madera maciza, con o sin almacenaje integrado.", designs: [] },
+  { id:"estanterias", name:"Estanterías", desc:"Estanterías modulares para exhibición y almacenaje.", designs: [] },
+  { id:"muebles-sala", name:"Muebles de Sala", desc:"Sofás, mesas de centro, gabinetes y piezas decorativas para sala.", designs: [] },
+  { id:"roperos", name:"Roperos", desc:"Roperos y vestidores para almacenaje de ropa.", designs: [] },
   { id:"escritorios", name:"Escritorios", desc:"Escritorios ejecutivos y de trabajo en madera maciza.", designs: [] },
   { id:"muebles-oficina", name:"Muebles de Oficina", desc:"Libreros, archiveros y mobiliario complementario de oficina.", designs: [] },
   { id:"mesas-noche", name:"Mesas de Noche", desc:"Mesas de noche a juego con el resto del dormitorio.", designs: [] },
   { id:"otros", name:"Otros", desc:"Diseños creativos y piezas fuera de lo común: propuestas únicas de ebanistería.",
     designs: [
-      { name:"Barra Alta para Comedor con Mosaico", image:"/images/comedores/barra-comedor-mosaico-01.jpg",
-        material:"Madera maciza con incrustaciones de mosaico cerámico pintado a mano",
-        desc:"Barra alta tipo desayunador con cuatro banquitos a juego. Superficie superior decorada con mosaico cerámico artesanal pintado a mano; laterales con paneles tipo persiana. Un diseño fuera de lo convencional para espacios de comedor informal o cocinas abiertas.",
-        finishes:[{name:"Madera natural con mosaico", image:"/images/comedores/barra-comedor-mosaico-01.jpg"}] }
+      { name:"Estantería Flotante en Zigzag", image:"/images/otros/estanteria-flotante-zigzag-01.jpg",
+        material:"Madera maciza con iluminación integrada",
+        desc:"Estantería de pared en diseño escalonado con iluminación LED integrada para exhibición de plantas.",
+        finishes:[{name:"Madera maciza con iluminación integrada", image:"/images/otros/estanteria-flotante-zigzag-01.jpg"}] },
+      { name:"Columpio Sofá de Exterior", image:"/images/otros/columpio-sofa-exterior-01.jpg",
+        material:"Madera maciza con cojines",
+        desc:"Columpio tipo sofá colgante para exterior, estructura en madera maciza con cadenas metálicas.",
+        finishes:[{name:"Madera maciza con cojines", image:"/images/otros/columpio-sofa-exterior-01.jpg"}] },
+      { name:"Escritorio con Closet y Espejo Integrado", image:"/images/otros/escritorio-closet-espejo-01.jpg",
+        material:"Madera con laminado",
+        desc:"Set compacto de escritorio combinado con closet lateral y puerta de espejo, ideal para espacios pequeños.",
+        finishes:[{name:"Madera con laminado", image:"/images/otros/escritorio-closet-espejo-01.jpg"}] },
+      { name:"Mesa Lateral Escultórica en Zigzag", image:"/images/otros/mesa-lateral-zigzag-01.jpg",
+        material:"Madera maciza multicapa, tonos contrastantes",
+        desc:"Mesa lateral de diseño escultórico con capas de madera en espiral y contraste de tonos.",
+        finishes:[{name:"Madera maciza multicapa, tonos contrastantes", image:"/images/otros/mesa-lateral-zigzag-01.jpg"}] },
+      { name:"Mesa de Centro Escultórica con Vidrio", image:"/images/otros/mesa-centro-zigzag-vidrio-01.jpg",
+        material:"Madera maciza multicapa con tapa de vidrio",
+        desc:"Mesa de centro de diseño geométrico en capas escalonadas, con cubierta de vidrio templado.",
+        finishes:[{name:"Madera maciza multicapa con tapa de vidrio", image:"/images/otros/mesa-centro-zigzag-vidrio-01.jpg"}] },
+      { name:"Cama Infantil Tipo Casita", image:"/images/otros/cama-infantil-casita-01.jpg",
+        material:"Madera maciza clara",
+        desc:"Cama infantil con cabecera en forma de casita y estantería integrada, diseño lúdico.",
+        finishes:[{name:"Madera maciza clara", image:"/images/otros/cama-infantil-casita-01.jpg"}] },
+      { name:"Repisa de Pared Geométrica", image:"/images/otros/repisa-pared-geometrica-01.jpg",
+        material:"Madera maciza",
+        desc:"Repisa decorativa de pared con formas triangulares para exhibición de plantas y objetos.",
+        finishes:[{name:"Madera maciza", image:"/images/otros/repisa-pared-geometrica-01.jpg"}] },
+      { name:"Banco Escultórico en Forma de X", image:"/images/otros/banco-x-escultorico-01.jpg",
+        material:"Madera maciza",
+        desc:"Banco o mesa auxiliar de líneas escultóricas entrelazadas en forma de X.",
+        finishes:[{name:"Madera maciza", image:"/images/otros/banco-x-escultorico-01.jpg"}] },
+      { name:"Estantería en Zigzag Bicolor", image:"/images/otros/estanteria-rayo-zigzag-01.jpg",
+        material:"Madera y laminado blanco",
+        desc:"Estantería de pared en diseño de rayo zigzag, combinando madera natural y acabado blanco.",
+        finishes:[{name:"Madera y laminado blanco", image:"/images/otros/estanteria-rayo-zigzag-01.jpg"}] },
+      { name:"Escalera en Madera de Borde Vivo", image:"/images/otros/escalera-madera-viva-01.jpg",
+        material:"Madera maciza de borde natural",
+        desc:"Escalera artesanal con escalones de madera de borde vivo e iluminación integrada.",
+        finishes:[{name:"Madera maciza de borde natural", image:"/images/otros/escalera-madera-viva-01.jpg"}] },
+      { name:"Ropero Antiguo Tallado", image:"/images/otros/ropero-antiguo-tallado-01.jpg",
+        material:"Madera maciza oscura",
+        desc:"Ropero de estilo antiguo con talla ornamental, remate curvo y patas cabriolé.",
+        finishes:[{name:"Madera maciza oscura", image:"/images/otros/ropero-antiguo-tallado-01.jpg"}] },
+      { name:"Sillón en Boucle con Base de Madera", image:"/images/otros/sillon-boucle-madera-01.jpg",
+        material:"Madera maciza y tapicería boucle",
+        desc:"Sillón de sala con estructura de madera expuesta y tapicería en tela boucle.",
+        finishes:[{name:"Madera maciza y tapicería boucle", image:"/images/otros/sillon-boucle-madera-01.jpg"}] },
+      { name:"Puerta Interior en Madera Sólida", image:"/images/otros/puerta-madera-solida-01.jpg",
+        material:"Madera maciza",
+        desc:"Puerta interior de panel simple en madera maciza con herrajes metálicos.",
+        finishes:[{name:"Madera maciza", image:"/images/otros/puerta-madera-solida-01.jpg"}] },
+      { name:"Escritorio Estilo Mid-Century", image:"/images/otros/escritorio-medio-siglo-01.jpg",
+        material:"Madera maciza",
+        desc:"Escritorio con gavetas y patas cónicas de estilo mid-century.",
+        finishes:[{name:"Madera maciza", image:"/images/otros/escritorio-medio-siglo-01.jpg"}] },
+      { name:"Escritorio Moderno con Pasacables", image:"/images/otros/escritorio-moderno-cable-01.jpg",
+        material:"Nogal macizo",
+        desc:"Escritorio moderno de líneas curvas con pasacables integrado y patas en ángulo.",
+        finishes:[{name:"Nogal macizo", image:"/images/otros/escritorio-moderno-cable-01.jpg"}] },
+      { name:"Escritorio Tipo Tablero de Dibujo", image:"/images/otros/escritorio-tipo-tablero-01.jpg",
+        material:"Madera clara",
+        desc:"Escritorio de líneas angulares inspirado en mesas de dibujo técnico.",
+        finishes:[{name:"Madera clara", image:"/images/otros/escritorio-tipo-tablero-01.jpg"}] },
+      { name:"Escritorio Geométrico Facetado", image:"/images/otros/escritorio-geometrico-oscuro-01.jpg",
+        material:"Madera maciza oscura",
+        desc:"Escritorio de diseño escultórico con caras facetadas geométricas.",
+        finishes:[{name:"Madera maciza oscura", image:"/images/otros/escritorio-geometrico-oscuro-01.jpg"}] },
+      { name:"Escritorio Consola en Nogal", image:"/images/otros/escritorio-consola-nogal-01.jpg",
+        material:"Nogal macizo",
+        desc:"Escritorio tipo consola de líneas simples en nogal macizo.",
+        finishes:[{name:"Nogal macizo", image:"/images/otros/escritorio-consola-nogal-01.jpg"}] },
+      { name:"Escritorio de Oficina con Silla Ergonómica", image:"/images/otros/escritorio-oficina-silla-01.jpg",
+        material:"Madera con base metálica",
+        desc:"Set de escritorio de oficina con silla ergonómica incluida.",
+        finishes:[{name:"Madera con base metálica", image:"/images/otros/escritorio-oficina-silla-01.jpg"}] },
+      { name:"Escritorio Ejecutivo con Extensión Lateral", image:"/images/otros/escritorio-ejecutivo-lateral-01.jpg",
+        material:"Madera maciza tono nogal",
+        desc:"Escritorio ejecutivo en L con extensión lateral y silla de cuero.",
+        finishes:[{name:"Madera maciza tono nogal", image:"/images/otros/escritorio-ejecutivo-lateral-01.jpg"}] },
+      { name:"Mesa de Conferencia Redonda", image:"/images/otros/mesa-conferencia-redonda-01.jpg",
+        material:"Madera maciza tono nogal",
+        desc:"Mesa de conferencia circular con base central y sillas ejecutivas a juego.",
+        finishes:[{name:"Madera maciza tono nogal", image:"/images/otros/mesa-conferencia-redonda-01.jpg"}] },
+      { name:"Escritorio Ejecutivo Angular", image:"/images/otros/escritorio-ejecutivo-angular-01.jpg",
+        material:"Madera maciza con detalle en piedra",
+        desc:"Escritorio ejecutivo de líneas angulares modernas con acabado en dos tonos.",
+        finishes:[{name:"Madera maciza con detalle en piedra", image:"/images/otros/escritorio-ejecutivo-angular-01.jpg"}] },
+      { name:"Escritorio con Credenza Lateral", image:"/images/otros/escritorio-credenza-lateral-01.jpg",
+        material:"Madera maciza tono nogal",
+        desc:"Escritorio ejecutivo acompañado de credenza lateral a juego.",
+        finishes:[{name:"Madera maciza tono nogal", image:"/images/otros/escritorio-credenza-lateral-01.jpg"}] },
+      { name:"Mesa de Conferencia Rectangular", image:"/images/otros/mesa-conferencia-rectangular-01.jpg",
+        material:"Madera maciza con base metálica",
+        desc:"Mesa de conferencia rectangular con sillas ejecutivas giratorias.",
+        finishes:[{name:"Madera maciza con base metálica", image:"/images/otros/mesa-conferencia-rectangular-01.jpg"}] },
+      { name:"Escritorio Ejecutivo Minimalista", image:"/images/otros/escritorio-ejecutivo-minimal-01.jpg",
+        material:"Madera maciza tono nogal",
+        desc:"Escritorio ejecutivo de líneas limpias con silla de cuero a juego.",
+        finishes:[{name:"Madera maciza tono nogal", image:"/images/otros/escritorio-ejecutivo-minimal-01.jpg"}] },
+      { name:"Consola de TV con Puertas de Vidrio", image:"/images/otros/consola-tv-vidrio-01.jpg",
+        material:"Madera maciza con vidrio y latón",
+        desc:"Mueble consola para TV con puertas de vidrio estriado y detalles en latón.",
+        finishes:[{name:"Madera maciza con vidrio y latón", image:"/images/otros/consola-tv-vidrio-01.jpg"}] },
+      { name:"Consola de TV Baja", image:"/images/otros/consola-tv-baja-01.jpg",
+        material:"Madera clara",
+        desc:"Consola baja para TV con compartimentos abiertos y patas cónicas.",
+        finishes:[{name:"Madera clara", image:"/images/otros/consola-tv-baja-01.jpg"}] },
+      { name:"Mesa Consola con Base de Caballete", image:"/images/otros/mesa-consola-caballete-01.jpg",
+        material:"Nogal macizo",
+        desc:"Mesa consola de líneas minimalistas con base tipo caballete.",
+        finishes:[{name:"Nogal macizo", image:"/images/otros/mesa-consola-caballete-01.jpg"}] },
+      { name:"Mesa de Centro Escultórica Abstracta", image:"/images/otros/mesa-centro-abstracta-01.jpg",
+        material:"Madera maciza oscura",
+        desc:"Mesa de centro de forma abstracta y escultórica, pieza de autor.",
+        finishes:[{name:"Madera maciza oscura", image:"/images/otros/mesa-centro-abstracta-01.jpg"}] },
+      { name:"Mesa de Centro Facetada", image:"/images/otros/mesa-centro-facetada-01.jpg",
+        material:"Madera clara",
+        desc:"Mesa de centro redonda sobre base facetada geométrica.",
+        finishes:[{name:"Madera clara", image:"/images/otros/mesa-centro-facetada-01.jpg"}] },
+      { name:"Mesa de Centro con Patas Doradas", image:"/images/otros/mesa-centro-patas-doradas-01.jpg",
+        material:"Nogal macizo con base metálica dorada",
+        desc:"Mesa de centro rectangular con base metálica en acabado dorado.",
+        finishes:[{name:"Nogal macizo con base metálica dorada", image:"/images/otros/mesa-centro-patas-doradas-01.jpg"}] },
+      { name:"Mesa de Centro con Tapa Dividida", image:"/images/otros/mesa-centro-tapa-dividida-01.jpg",
+        material:"Madera maciza",
+        desc:"Mesa de centro con cubierta en paneles divididos y base central.",
+        finishes:[{name:"Madera maciza", image:"/images/otros/mesa-centro-tapa-dividida-01.jpg"}] },
+      { name:"Mesa de Centro con Base en Trapecio Dorado", image:"/images/otros/mesa-centro-base-dorada-01.jpg",
+        material:"Madera maciza con base metálica dorada",
+        desc:"Mesa de centro rectangular sobre base trapezoidal en acabado dorado.",
+        finishes:[{name:"Madera maciza con base metálica dorada", image:"/images/otros/mesa-centro-base-dorada-01.jpg"}] },
+      { name:"Librería Giratoria Cilíndrica", image:"/images/otros/libreria-giratoria-01.jpg",
+        material:"Madera maciza",
+        desc:"Librero giratorio de forma cilíndrica en niveles, diseño compacto.",
+        finishes:[{name:"Madera maciza", image:"/images/otros/libreria-giratoria-01.jpg"}] },
+      { name:"Estantería Modular con Marco Negro", image:"/images/otros/estanteria-modular-negra-01.jpg",
+        material:"Madera y metal negro",
+        desc:"Estantería modular de pared con estructura metálica negra y gavetas.",
+        finishes:[{name:"Madera y metal negro", image:"/images/otros/estanteria-modular-negra-01.jpg"}] },
+      { name:"Par de Libreros con Gavetas de Ratán", image:"/images/otros/libreros-gemelos-ratan-01.jpg",
+        material:"Madera maciza con ratán",
+        desc:"Par de libreros altos con gavetas inferiores tejidas en ratán.",
+        finishes:[{name:"Madera maciza con ratán", image:"/images/otros/libreros-gemelos-ratan-01.jpg"}] },
+      { name:"Estantería de Pared con Marco de Latón", image:"/images/otros/estanteria-pared-laton-01.jpg",
+        material:"Madera maciza con estructura de latón",
+        desc:"Estantería abierta de pared con estructura metálica en tono latón.",
+        finishes:[{name:"Madera maciza con estructura de latón", image:"/images/otros/estanteria-pared-laton-01.jpg"}] },
+      { name:"Vitrina de Pared Iluminada", image:"/images/otros/vitrina-pared-iluminada-01.jpg",
+        material:"Madera maciza con vidrio",
+        desc:"Vitrina de pared con puertas de vidrio e iluminación interior integrada.",
+        finishes:[{name:"Madera maciza con vidrio", image:"/images/otros/vitrina-pared-iluminada-01.jpg"}] },
+      { name:"Estantería Tipo Escalera", image:"/images/otros/estanteria-escalera-negra-01.jpg",
+        material:"Madera con estructura metálica negra",
+        desc:"Estantería abierta de tres niveles sobre estructura metálica negra.",
+        finishes:[{name:"Madera con estructura metálica negra", image:"/images/otros/estanteria-escalera-negra-01.jpg"}] },
+      { name:"Libreros Escalonados", image:"/images/otros/libreros-escalonados-01.jpg",
+        material:"Madera maciza",
+        desc:"Módulos de librero en composición escalonada tipo cascada.",
+        finishes:[{name:"Madera maciza", image:"/images/otros/libreros-escalonados-01.jpg"}] },
+      { name:"Librero de Formas Onduladas", image:"/images/otros/libreros-ondulados-01.jpg",
+        material:"Madera maciza",
+        desc:"Librero de pared con divisiones onduladas de diseño orgánico.",
+        finishes:[{name:"Madera maciza", image:"/images/otros/libreros-ondulados-01.jpg"}] },
+      { name:"Tocador de Baño Blanco con Espejo Redondo", image:"/images/otros/tocador-bano-blanco-01.jpg",
+        material:"Madera maciza lacada en blanco",
+        desc:"Mueble de baño flotante en blanco con encimera y espejo circular.",
+        finishes:[{name:"Madera maciza lacada en blanco", image:"/images/otros/tocador-bano-blanco-01.jpg"}] },
+      { name:"Tocador de Baño Rústico", image:"/images/otros/tocador-bano-rustico-01.jpg",
+        material:"Madera maciza con base metálica",
+        desc:"Mueble de baño estilo rústico industrial con base metálica y repisas abiertas.",
+        finishes:[{name:"Madera maciza con base metálica", image:"/images/otros/tocador-bano-rustico-01.jpg"}] },
+      { name:"Tocador de Baño Moderno Doble", image:"/images/otros/tocador-bano-moderno-01.jpg",
+        material:"Madera maciza con cubierta en piedra",
+        desc:"Mueble de baño doble suspendido con cubierta en piedra y espejo circular.",
+        finishes:[{name:"Madera maciza con cubierta en piedra", image:"/images/otros/tocador-bano-moderno-01.jpg"}] },
+      { name:"Tocador de Baño Clásico Blanco", image:"/images/otros/tocador-bano-clasico-01.jpg",
+        material:"Madera maciza lacada en blanco",
+        desc:"Mueble de baño de estilo clásico con cajones y herrajes en latón.",
+        finishes:[{name:"Madera maciza lacada en blanco", image:"/images/otros/tocador-bano-clasico-01.jpg"}] },
+      { name:"Closet Vestidor con Puertas de Vidrio", image:"/images/otros/closet-vestidor-vidrio-01.jpg",
+        material:"Madera maciza con vidrio",
+        desc:"Sistema de closet vestidor con puertas de vidrio, iluminación interior y organizadores de calzado.",
+        finishes:[{name:"Madera maciza con vidrio", image:"/images/otros/closet-vestidor-vidrio-01.jpg"}] },
+      { name:"Ropero Blanco Tradicional", image:"/images/otros/ropero-blanco-tradicional-01.jpg",
+        material:"Madera maciza lacada en blanco",
+        desc:"Sistema de ropero de estilo tradicional en blanco con cajones y puertas talladas.",
+        finishes:[{name:"Madera maciza lacada en blanco", image:"/images/otros/ropero-blanco-tradicional-01.jpg"}] },
+      { name:"Closet Abierto Estilo Industrial", image:"/images/otros/closet-industrial-abierto-01.jpg",
+        material:"Madera con estructura metálica negra",
+        desc:"Sistema de closet abierto con estantería industrial y cajones inferiores.",
+        finishes:[{name:"Madera con estructura metálica negra", image:"/images/otros/closet-industrial-abierto-01.jpg"}] },
+      { name:"Ropero con Tocador y Espejo Integrado", image:"/images/otros/ropero-espejo-tocador-01.jpg",
+        material:"Madera maciza",
+        desc:"Ropero con módulo de tocador y espejo circular integrado.",
+        finishes:[{name:"Madera maciza", image:"/images/otros/ropero-espejo-tocador-01.jpg"}] },
+      { name:"Cama Plataforma con Cajones", image:"/images/otros/cama-plataforma-cajones-01.jpg",
+        material:"Madera maciza clara",
+        desc:"Cama plataforma con sistema de cajones de almacenaje en la base.",
+        finishes:[{name:"Madera maciza clara", image:"/images/otros/cama-plataforma-cajones-01.jpg"}] },
+      { name:"Cama en Nogal con Cajones", image:"/images/otros/cama-nogal-cajones-01.jpg",
+        material:"Nogal macizo",
+        desc:"Cama con cabecera en nogal y cajones de almacenaje integrados en la base.",
+        finishes:[{name:"Nogal macizo", image:"/images/otros/cama-nogal-cajones-01.jpg"}] },
+      { name:"Cama Plataforma Simple", image:"/images/otros/cama-plataforma-simple-01.jpg",
+        material:"Madera clara con patas cónicas",
+        desc:"Cama plataforma de líneas simples con patas cónicas en madera clara.",
+        finishes:[{name:"Madera clara con patas cónicas", image:"/images/otros/cama-plataforma-simple-01.jpg"}] },
+      { name:"Escritorio Ejecutivo con Panel Lateral", image:"/images/otros/escritorio-ejecutivo-panel-01.jpg",
+        material:"Madera maciza tono nogal",
+        desc:"Escritorio ejecutivo con panel lateral de privacidad y silla de cuero a juego.",
+        finishes:[{name:"Madera maciza tono nogal", image:"/images/otros/escritorio-ejecutivo-panel-01.jpg"}] }
     ] },
 ];
 
@@ -427,11 +665,10 @@ function renderGroups(){
         ${CATALOG.map(cat => {
           const hasPhoto = cat.designs.length > 0;
           const img = hasPhoto ? cat.designs[0].image : PLACEHOLDER;
-          const flag = hasPhoto ? `<span class="cube-flag is-real">Fotografía Real</span>` : `<span class="cube-flag is-pending">Próximamente</span>`;
           const count = hasPhoto ? `${cat.designs.length} diseño${cat.designs.length>1?'s':''} disponible${cat.designs.length>1?'s':''}` : `Catálogo en preparación`;
           return `
           <div class="cube-card" onclick="Router.category('${cat.id}')">
-            <div class="cube-thumb">${flag}<img src="${img}" alt="${cat.name}"></div>
+            <div class="cube-thumb"><img src="${img}" alt="${cat.name}"></div>
             <div class="cube-body">
               <h4>${cat.name}</h4>
               <div class="count">${count}</div>
@@ -448,10 +685,21 @@ function renderGroups(){
 /* ============ RENDER: Mosaico editorial (3 columnas, solo fotos reales) ============ */
 function renderFeatured(){
   const el = document.getElementById('featuredContainer');
+  // Selección curada: alterna entre categorías (round-robin) para dar variedad,
+  // en vez de listar los 69 diseños de golpe. Tope de 9 piezas (grid de 3x3).
+  const CAP = 9;
+  const byCategory = allCategoriesFlat()
+    .map(cat => ({cat, items: cat.designs.map((d,idx)=>({cat, design:d, idx}))}))
+    .filter(g => g.items.length > 0);
   const featured = [];
-  allCategoriesFlat().forEach(cat=>{
-    cat.designs.forEach((d,idx)=> featured.push({cat, design:d, idx}));
-  });
+  let round = 0;
+  while(featured.length < CAP && byCategory.some(g => g.items.length > round)){
+    for(const g of byCategory){
+      if(featured.length >= CAP) break;
+      if(g.items[round]) featured.push(g.items[round]);
+    }
+    round++;
+  }
   el.innerHTML = featured.map(f => `
     <div class="mosaic-card" onclick="Router.design('${f.cat.id}', ${f.idx})">
       <div class="mosaic-thumb"><img src="${f.design.image}" alt="${f.design.name}"></div>
@@ -520,9 +768,9 @@ function renderDesign(catId, idx){
       <div class="mat-line"><i class="fa-solid fa-swatchbook" style="color:var(--gold);"></i> ${d.material}</div>
       <p class="desc">${d.desc}</p>
       <div class="finish-block">
-        <h5>Acabado Fotografiado</h5>
+        <h5>Acabado Disponible</h5>
         <div class="finish-swatches">${swatches}</div>
-        <div class="finish-note"><i class="fa-solid fa-circle-info" style="color:var(--teal); margin-right:6px;"></i>Este diseño se fabrica actualmente en: <strong>${finishNames}</strong>. Otros tonos y acabados de madera están disponibles bajo pedido — consulta con nuestro equipo para ver opciones adicionales.</div>
+        <div class="finish-note"><i class="fa-solid fa-circle-info" style="color:var(--teal); margin-right:6px;"></i>Este diseño puede fabricarse en: <strong>${finishNames}</strong>. Otros tonos y acabados de madera están disponibles bajo pedido — consulta con nuestro equipo para ver opciones adicionales.</div>
       </div>
       <div class="dd-actions">
         <a href="https://wa.me/50664458741?text=${encodeURIComponent('Hola, me interesa el diseño: '+d.name)}" class="btn btn-solid"><i class="fa-brands fa-whatsapp"></i> Consultar este Diseño</a>
